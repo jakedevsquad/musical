@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="134" height="134" viewBox="0 0 134 134">
+  <g id="download" transform="translate(12 12)">
+    <rect id="Rectangle_16" data-name="Rectangle 16" width="134" height="134" transform="translate(-12 -12)" fill="none"/>
+    <g id="Group_14" data-name="Group 14" transform="translate(13.644 3.411)">
+      <path id="Union_14" data-name="Union 14" d="M81.864,102.33H0V0H57.073L81.864,23.117v3.029h0ZM3.416,98.914H78.457V26.146H53.443V3.406H3.416ZM56.85,22.74H76.738L57.245,4.548h-.4Zm-41.5,62.535a3.979,3.979,0,1,1,0-7.959h52.3a3.979,3.979,0,0,1,0,7.959Zm23.081-13.6-.136-.132L20.607,53.848a3.411,3.411,0,1,1,4.826-4.821L37.521,61.12V26.151a3.411,3.411,0,0,1,6.822,0V61.17L56.486,49.027a3.411,3.411,0,1,1,4.826,4.821L43.624,71.54a3.8,3.8,0,0,1-5.194.132Z" fill="#ff99af"/>
+    </g>
+  </g>
+</svg>

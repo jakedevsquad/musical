@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1401.33" height="892.812" viewBox="0 0 1401.33 892.812">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1.015" y1="0.147" x2="0.155" y2="0.463" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff99af"/>
+      <stop offset="0.488" stop-color="#fa60ad"/>
+      <stop offset="1" stop-color="#5eacf6"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient" cx="0.617" cy="0.16" r="0.781" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff99af"/>
+      <stop offset="0.488" stop-color="#db9dbf"/>
+      <stop offset="1" stop-color="#5eacf6"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="0.716" cy="0.199" r="0.781" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-3" cx="0.716" cy="0.199" r="0.781" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-4" cx="0.302" cy="0.133" r="0.781" xlink:href="#radial-gradient"/>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient-5" cx="1.446" cy="-0.09" r="0.374" gradientTransform="matrix(3.494, -0.01, 0.12, 3.494, -3.595, 0.238)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-6" cx="0.676" cy="0.106" r="0.439" gradientTransform="translate(0 -0.007) scale(1 1.07)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-7" cx="0.749" cy="0.125" r="0.781" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-8" cx="0.761" cy="0.226" r="0.781" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-9" cx="0.878" cy="0.376" r="0.781" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-10" cx="0.829" cy="0.664" r="0.781" xlink:href="#radial-gradient"/>
+  </defs>
+  <g id="Hero" transform="translate(0.002 0.004)">
+    <rect id="Rectangle_27" data-name="Rectangle 27" width="1400" height="891.809" fill="url(#linear-gradient)"/>
+    <path id="Subtraction_42" data-name="Subtraction 42" d="M18497-1742a194.8,194.8,0,0,1-48-5.984V-2049h205.709a193.121,193.121,0,0,1,26.711,52.625A193.8,193.8,0,0,1,18691-1936a195.317,195.317,0,0,1-3.941,39.1,193.219,193.219,0,0,1-11.3,36.416,194.063,194.063,0,0,1-17.887,32.954,195.208,195.208,0,0,1-23.689,28.712,195.258,195.258,0,0,1-28.711,23.689,193.975,193.975,0,0,1-32.953,17.887,193,193,0,0,1-36.414,11.3A195.437,195.437,0,0,1,18497-1742Z" transform="translate(-18449 2048.999)" opacity="0.45" fill="url(#radial-gradient)"/>
+    <circle id="Ellipse_58" data-name="Ellipse 58" cx="17" cy="17" r="17" transform="translate(260 209)" opacity="0.45" fill="url(#radial-gradient-2)"/>
+    <circle id="Ellipse_60" data-name="Ellipse 60" cx="10" cy="10" r="10" transform="translate(257 198)" opacity="0.45" fill="url(#radial-gradient-3)"/>
+    <circle id="Ellipse_59" data-name="Ellipse 59" cx="44.5" cy="44.5" r="44.5" transform="translate(188 218)" opacity="0.45" fill="url(#radial-gradient-4)"/>
+    <rect id="Rectangle_28" data-name="Rectangle 28" width="1400" height="670" transform="translate(0 222.809)" fill="url(#linear-gradient-2)"/>
+    <path id="Subtraction_43" data-name="Subtraction 43" d="M18205.777-1816.513h0v0a194.806,194.806,0,0,1-39.139-30.341,194.727,194.727,0,0,1-30.236-39.23,192.894,192.894,0,0,1-19.492-46.277,194.466,194.466,0,0,1-6.906-51.485,194.452,194.452,0,0,1,6.906-51.484,192.888,192.888,0,0,1,19.492-46.276,194.739,194.739,0,0,1,30.236-39.229,194.879,194.879,0,0,1,39.143-30.342Z" transform="translate(-16805.777 2661)" opacity="0.45" fill="url(#radial-gradient-5)"/>
+    <circle id="Ellipse_55" data-name="Ellipse 55" cx="59.5" cy="59.5" r="59.5" transform="translate(1247.585 788.745) rotate(-69)" opacity="0.45" fill="url(#radial-gradient-6)"/>
+    <circle id="Ellipse_56" data-name="Ellipse 56" cx="40" cy="40" r="40" transform="translate(1202.18 742.394) rotate(-69)" opacity="0.45" fill="url(#radial-gradient-7)"/>
+    <circle id="Ellipse_57" data-name="Ellipse 57" cx="17" cy="17" r="17" transform="translate(1253.038 674.083) rotate(-69)" opacity="0.45" fill="url(#radial-gradient-8)"/>
+    <circle id="Ellipse_61" data-name="Ellipse 61" cx="17" cy="17" r="17" transform="translate(58.631 589.562) rotate(-99)" opacity="0.45" fill="url(#radial-gradient-9)"/>
+    <circle id="Ellipse_62" data-name="Ellipse 62" cx="44.5" cy="44.5" r="44.5" transform="translate(78.783 642.991) rotate(-99)" opacity="0.45" fill="url(#radial-gradient-10)"/>
+  </g>
+</svg>

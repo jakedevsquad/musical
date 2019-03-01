@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35.859" height="36" viewBox="0 0 35.859 36">
+  <defs>
+    <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 17 16">
+      <image width="17" height="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAQCAYAAADwMZRfAAAAAXNSR0IArs4c6QAAAVFJREFUOBGlkz1LA0EQhveCBD+KWCoWVqmiNmlCPNSUESRa2NqInWCRziaNCCmC+g8srEULLURQxMA1NoKVipWVhZZJipzPi3uYeDnM6QvPzc7czNzsLuf4vm9m3MWsMWYXFiAJv6lFwjVs39+e3znTs8UczhUMQlw1KCgkeNQgToMq+StwZutqaqJJ4shjCycUPNminLbjR3SoE9+DZ5iEdViCG3iBPKTBODrY/0qTaLROvTHuhgLc2hamBKfEDmxsBzuldaABFkrq1LEcGmQw+/ZFAf+SRg/4uoSuGh3sT43YwAe2adey8qXUl/l+9moyz1fH+eoraXNQkZVPfIh1EboUdTu6gWUK34NsGgyzPoTVIBbYqCZ6r/GP4BHGYA0mICQdbBt6bWuU+GaoIhxoq9gLx2NFPDUpg36kv0h15QSHp0lcuAD94v1Iecp3Vf8Jwe5cE/jWFEEAAAAASUVORK5CYII="/>
+    </pattern>
+  </defs>
+  <g id="Group_58" data-name="Group 58" transform="translate(-1026 -3151)">
+    <ellipse id="Ellipse_5_copy_9" data-name="Ellipse 5 copy 9" cx="17.93" cy="18" rx="17.93" ry="18" transform="translate(1026 3151)" fill="#fff"/>
+    <rect id="Layer_64" data-name="Layer 64" width="22" height="21" transform="translate(1033 3159)" fill="url(#pattern)"/>
+  </g>
+</svg>
