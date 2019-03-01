@@ -1,5 +1,5 @@
-<div class="fixed pin-l pin-b w-full h-300 bg-footer">
-    <div class="flex justify-around w-3/4 mt-12 mx-auto">
+<div class="w-full h-300 bg-footer">
+    <div class="flex justify-around w-3/4 pt-12 mx-auto">
         <div>
             <div class="text-white text-uppercase text-lg">Quick Links</div>
             <div class="mt-2">

@@ -13860,6 +13860,10 @@ table {
   margin: 8rem;
 }
 
+.m-64 {
+  margin: 16rem;
+}
+
 .m-auto {
   margin: auto;
 }
@@ -14006,6 +14010,16 @@ table {
 .mx-32 {
   margin-left: 8rem;
   margin-right: 8rem;
+}
+
+.my-64 {
+  margin-top: 16rem;
+  margin-bottom: 16rem;
+}
+
+.mx-64 {
+  margin-left: 16rem;
+  margin-right: 16rem;
 }
 
 .my-auto {
@@ -14250,6 +14264,22 @@ table {
 
 .ml-32 {
   margin-left: 8rem;
+}
+
+.mt-64 {
+  margin-top: 16rem;
+}
+
+.mr-64 {
+  margin-right: 16rem;
+}
+
+.mb-64 {
+  margin-bottom: 16rem;
+}
+
+.ml-64 {
+  margin-left: 16rem;
 }
 
 .mt-auto {
@@ -16826,6 +16856,11 @@ table {
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
+}
+
+.dashboard-background {
+  background: url("../../images/hero-bg.svg");
+  background-size: cover;
 }
 
 @media (min-width: 576px) {
@@ -19494,6 +19529,10 @@ table {
     margin: 8rem;
   }
 
+  .sm\:m-64 {
+    margin: 16rem;
+  }
+
   .sm\:m-auto {
     margin: auto;
   }
@@ -19640,6 +19679,16 @@ table {
   .sm\:mx-32 {
     margin-left: 8rem;
     margin-right: 8rem;
+  }
+
+  .sm\:my-64 {
+    margin-top: 16rem;
+    margin-bottom: 16rem;
+  }
+
+  .sm\:mx-64 {
+    margin-left: 16rem;
+    margin-right: 16rem;
   }
 
   .sm\:my-auto {
@@ -19884,6 +19933,22 @@ table {
 
   .sm\:ml-32 {
     margin-left: 8rem;
+  }
+
+  .sm\:mt-64 {
+    margin-top: 16rem;
+  }
+
+  .sm\:mr-64 {
+    margin-right: 16rem;
+  }
+
+  .sm\:mb-64 {
+    margin-bottom: 16rem;
+  }
+
+  .sm\:ml-64 {
+    margin-left: 16rem;
   }
 
   .sm\:mt-auto {
@@ -25108,6 +25173,10 @@ table {
     margin: 8rem;
   }
 
+  .md\:m-64 {
+    margin: 16rem;
+  }
+
   .md\:m-auto {
     margin: auto;
   }
@@ -25254,6 +25323,16 @@ table {
   .md\:mx-32 {
     margin-left: 8rem;
     margin-right: 8rem;
+  }
+
+  .md\:my-64 {
+    margin-top: 16rem;
+    margin-bottom: 16rem;
+  }
+
+  .md\:mx-64 {
+    margin-left: 16rem;
+    margin-right: 16rem;
   }
 
   .md\:my-auto {
@@ -25498,6 +25577,22 @@ table {
 
   .md\:ml-32 {
     margin-left: 8rem;
+  }
+
+  .md\:mt-64 {
+    margin-top: 16rem;
+  }
+
+  .md\:mr-64 {
+    margin-right: 16rem;
+  }
+
+  .md\:mb-64 {
+    margin-bottom: 16rem;
+  }
+
+  .md\:ml-64 {
+    margin-left: 16rem;
   }
 
   .md\:mt-auto {
@@ -30722,6 +30817,10 @@ table {
     margin: 8rem;
   }
 
+  .lg\:m-64 {
+    margin: 16rem;
+  }
+
   .lg\:m-auto {
     margin: auto;
   }
@@ -30868,6 +30967,16 @@ table {
   .lg\:mx-32 {
     margin-left: 8rem;
     margin-right: 8rem;
+  }
+
+  .lg\:my-64 {
+    margin-top: 16rem;
+    margin-bottom: 16rem;
+  }
+
+  .lg\:mx-64 {
+    margin-left: 16rem;
+    margin-right: 16rem;
   }
 
   .lg\:my-auto {
@@ -31112,6 +31221,22 @@ table {
 
   .lg\:ml-32 {
     margin-left: 8rem;
+  }
+
+  .lg\:mt-64 {
+    margin-top: 16rem;
+  }
+
+  .lg\:mr-64 {
+    margin-right: 16rem;
+  }
+
+  .lg\:mb-64 {
+    margin-bottom: 16rem;
+  }
+
+  .lg\:ml-64 {
+    margin-left: 16rem;
   }
 
   .lg\:mt-auto {
@@ -36336,6 +36461,10 @@ table {
     margin: 8rem;
   }
 
+  .xl\:m-64 {
+    margin: 16rem;
+  }
+
   .xl\:m-auto {
     margin: auto;
   }
@@ -36482,6 +36611,16 @@ table {
   .xl\:mx-32 {
     margin-left: 8rem;
     margin-right: 8rem;
+  }
+
+  .xl\:my-64 {
+    margin-top: 16rem;
+    margin-bottom: 16rem;
+  }
+
+  .xl\:mx-64 {
+    margin-left: 16rem;
+    margin-right: 16rem;
   }
 
   .xl\:my-auto {
@@ -36726,6 +36865,22 @@ table {
 
   .xl\:ml-32 {
     margin-left: 8rem;
+  }
+
+  .xl\:mt-64 {
+    margin-top: 16rem;
+  }
+
+  .xl\:mr-64 {
+    margin-right: 16rem;
+  }
+
+  .xl\:mb-64 {
+    margin-bottom: 16rem;
+  }
+
+  .xl\:ml-64 {
+    margin-left: 16rem;
   }
 
   .xl\:mt-auto {
