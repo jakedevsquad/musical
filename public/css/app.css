@@ -11487,7 +11487,7 @@ table {
 }
 
 .bg-pink {
-  background-color: #f66d9b;
+  background-color: #f38dc7;
 }
 
 .bg-pink-light {
@@ -11783,7 +11783,7 @@ table {
 }
 
 .hover\:bg-pink:hover {
-  background-color: #f66d9b;
+  background-color: #f38dc7;
 }
 
 .hover\:bg-pink-light:hover {
@@ -12079,7 +12079,7 @@ table {
 }
 
 .focus\:bg-pink:focus {
-  background-color: #f66d9b;
+  background-color: #f38dc7;
 }
 
 .focus\:bg-pink-light:focus {
@@ -12447,7 +12447,7 @@ table {
 }
 
 .border-pink {
-  border-color: #f66d9b;
+  border-color: #f38dc7;
 }
 
 .border-pink-light {
@@ -12743,7 +12743,7 @@ table {
 }
 
 .hover\:border-pink:hover {
-  border-color: #f66d9b;
+  border-color: #f38dc7;
 }
 
 .hover\:border-pink-light:hover {
@@ -13039,7 +13039,7 @@ table {
 }
 
 .focus\:border-pink:focus {
-  border-color: #f66d9b;
+  border-color: #f38dc7;
 }
 
 .focus\:border-pink-light:focus {
@@ -13602,6 +13602,18 @@ table {
 
 .font-mono {
   font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+}
+
+.font-open {
+  font-family: Open Sans;
+}
+
+.font-lato {
+  font-family: Lato;
+}
+
+.font-source {
+  font-family: Source Sans Pro;
 }
 
 .font-hairline {
@@ -15832,7 +15844,7 @@ table {
 }
 
 .text-pink {
-  color: #f66d9b;
+  color: #f38dc7;
 }
 
 .text-pink-light {
@@ -16128,7 +16140,7 @@ table {
 }
 
 .hover\:text-pink:hover {
-  color: #f66d9b;
+  color: #f38dc7;
 }
 
 .hover\:text-pink-light:hover {
@@ -16424,7 +16436,7 @@ table {
 }
 
 .focus\:text-pink:focus {
-  color: #f66d9b;
+  color: #f38dc7;
 }
 
 .focus\:text-pink-light:focus {
@@ -17164,7 +17176,7 @@ table {
   }
 
   .sm\:bg-pink {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .sm\:bg-pink-light {
@@ -17460,7 +17472,7 @@ table {
   }
 
   .sm\:hover\:bg-pink:hover {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .sm\:hover\:bg-pink-light:hover {
@@ -17756,7 +17768,7 @@ table {
   }
 
   .sm\:focus\:bg-pink:focus {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .sm\:focus\:bg-pink-light:focus {
@@ -18116,7 +18128,7 @@ table {
   }
 
   .sm\:border-pink {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .sm\:border-pink-light {
@@ -18412,7 +18424,7 @@ table {
   }
 
   .sm\:hover\:border-pink:hover {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .sm\:hover\:border-pink-light:hover {
@@ -18708,7 +18720,7 @@ table {
   }
 
   .sm\:focus\:border-pink:focus {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .sm\:focus\:border-pink-light:focus {
@@ -19271,6 +19283,18 @@ table {
 
   .sm\:font-mono {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  }
+
+  .sm\:font-open {
+    font-family: Open Sans;
+  }
+
+  .sm\:font-lato {
+    font-family: Lato;
+  }
+
+  .sm\:font-source {
+    font-family: Source Sans Pro;
   }
 
   .sm\:font-hairline {
@@ -21485,7 +21509,7 @@ table {
   }
 
   .sm\:text-pink {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .sm\:text-pink-light {
@@ -21781,7 +21805,7 @@ table {
   }
 
   .sm\:hover\:text-pink:hover {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .sm\:hover\:text-pink-light:hover {
@@ -22077,7 +22101,7 @@ table {
   }
 
   .sm\:focus\:text-pink:focus {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .sm\:focus\:text-pink-light:focus {
@@ -22808,7 +22832,7 @@ table {
   }
 
   .md\:bg-pink {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .md\:bg-pink-light {
@@ -23104,7 +23128,7 @@ table {
   }
 
   .md\:hover\:bg-pink:hover {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .md\:hover\:bg-pink-light:hover {
@@ -23400,7 +23424,7 @@ table {
   }
 
   .md\:focus\:bg-pink:focus {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .md\:focus\:bg-pink-light:focus {
@@ -23760,7 +23784,7 @@ table {
   }
 
   .md\:border-pink {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .md\:border-pink-light {
@@ -24056,7 +24080,7 @@ table {
   }
 
   .md\:hover\:border-pink:hover {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .md\:hover\:border-pink-light:hover {
@@ -24352,7 +24376,7 @@ table {
   }
 
   .md\:focus\:border-pink:focus {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .md\:focus\:border-pink-light:focus {
@@ -24915,6 +24939,18 @@ table {
 
   .md\:font-mono {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  }
+
+  .md\:font-open {
+    font-family: Open Sans;
+  }
+
+  .md\:font-lato {
+    font-family: Lato;
+  }
+
+  .md\:font-source {
+    font-family: Source Sans Pro;
   }
 
   .md\:font-hairline {
@@ -27129,7 +27165,7 @@ table {
   }
 
   .md\:text-pink {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .md\:text-pink-light {
@@ -27425,7 +27461,7 @@ table {
   }
 
   .md\:hover\:text-pink:hover {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .md\:hover\:text-pink-light:hover {
@@ -27721,7 +27757,7 @@ table {
   }
 
   .md\:focus\:text-pink:focus {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .md\:focus\:text-pink-light:focus {
@@ -28452,7 +28488,7 @@ table {
   }
 
   .lg\:bg-pink {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .lg\:bg-pink-light {
@@ -28748,7 +28784,7 @@ table {
   }
 
   .lg\:hover\:bg-pink:hover {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .lg\:hover\:bg-pink-light:hover {
@@ -29044,7 +29080,7 @@ table {
   }
 
   .lg\:focus\:bg-pink:focus {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .lg\:focus\:bg-pink-light:focus {
@@ -29404,7 +29440,7 @@ table {
   }
 
   .lg\:border-pink {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .lg\:border-pink-light {
@@ -29700,7 +29736,7 @@ table {
   }
 
   .lg\:hover\:border-pink:hover {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .lg\:hover\:border-pink-light:hover {
@@ -29996,7 +30032,7 @@ table {
   }
 
   .lg\:focus\:border-pink:focus {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .lg\:focus\:border-pink-light:focus {
@@ -30559,6 +30595,18 @@ table {
 
   .lg\:font-mono {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  }
+
+  .lg\:font-open {
+    font-family: Open Sans;
+  }
+
+  .lg\:font-lato {
+    font-family: Lato;
+  }
+
+  .lg\:font-source {
+    font-family: Source Sans Pro;
   }
 
   .lg\:font-hairline {
@@ -32773,7 +32821,7 @@ table {
   }
 
   .lg\:text-pink {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .lg\:text-pink-light {
@@ -33069,7 +33117,7 @@ table {
   }
 
   .lg\:hover\:text-pink:hover {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .lg\:hover\:text-pink-light:hover {
@@ -33365,7 +33413,7 @@ table {
   }
 
   .lg\:focus\:text-pink:focus {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .lg\:focus\:text-pink-light:focus {
@@ -34096,7 +34144,7 @@ table {
   }
 
   .xl\:bg-pink {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .xl\:bg-pink-light {
@@ -34392,7 +34440,7 @@ table {
   }
 
   .xl\:hover\:bg-pink:hover {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .xl\:hover\:bg-pink-light:hover {
@@ -34688,7 +34736,7 @@ table {
   }
 
   .xl\:focus\:bg-pink:focus {
-    background-color: #f66d9b;
+    background-color: #f38dc7;
   }
 
   .xl\:focus\:bg-pink-light:focus {
@@ -35048,7 +35096,7 @@ table {
   }
 
   .xl\:border-pink {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .xl\:border-pink-light {
@@ -35344,7 +35392,7 @@ table {
   }
 
   .xl\:hover\:border-pink:hover {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .xl\:hover\:border-pink-light:hover {
@@ -35640,7 +35688,7 @@ table {
   }
 
   .xl\:focus\:border-pink:focus {
-    border-color: #f66d9b;
+    border-color: #f38dc7;
   }
 
   .xl\:focus\:border-pink-light:focus {
@@ -36203,6 +36251,18 @@ table {
 
   .xl\:font-mono {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  }
+
+  .xl\:font-open {
+    font-family: Open Sans;
+  }
+
+  .xl\:font-lato {
+    font-family: Lato;
+  }
+
+  .xl\:font-source {
+    font-family: Source Sans Pro;
   }
 
   .xl\:font-hairline {
@@ -38417,7 +38477,7 @@ table {
   }
 
   .xl\:text-pink {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .xl\:text-pink-light {
@@ -38713,7 +38773,7 @@ table {
   }
 
   .xl\:hover\:text-pink:hover {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .xl\:hover\:text-pink-light:hover {
@@ -39009,7 +39069,7 @@ table {
   }
 
   .xl\:focus\:text-pink:focus {
-    color: #f66d9b;
+    color: #f38dc7;
   }
 
   .xl\:focus\:text-pink-light:focus {
