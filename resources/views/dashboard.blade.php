@@ -21,27 +21,78 @@
 </head>
 <body>
 <div id="app" class="font-open">
-    <div class="pt-4 pb-20 dashboard-background h-full">
-        <div class="h-12 w-full flex justify-around text-white text-lg">
-            <div>
+    <div class="dashboard-background
+                lg:pt-4 lg:pb-20 lg:h-full
+                md:pt-4 md:pb-20 md:h-full
+                sm:pt-4 sm:pb-20 sm:h-full
+                xs:pt-4 xs:pb-20 xs:h-full">
+        <div class="lg:h-12 lg:w-full lg:flex lg:flex-row lg:justify-around lg:text-white lg:text-lg
+                    md:h-12 md:w-full md:flex md:flex-row md:justify-around md:text-white md:text-lg
+                    sm:h-12 sm:w-full sm:flex sm:flex-row sm:justify-around sm:text-white sm:text-lg
+                    xs:h-12 xs:w-full xs:flex xs:flex-row xs:justify-around xs:text-white xs:text-lg">
+            <div class="w-1/2 lg:flex lg:flex-row lg:justify-center md:hidden sm:hidden xs:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" width="99.502" height="17.969" viewBox="0 0 99.502 17.969">
                     <path id="Union_28" data-name="Union 28" d="M18191.756-2360.956v-5.432c0-4.022,2.3-6.269,6.424-6.269a5.972,5.972,0,0,1,5.432,2.819.652.652,0,0,1-.207.993l-1.8,1.281a.659.659,0,0,1-1.02-.21,2.843,2.843,0,0,0-2.4-1.332c-1.543,0-2.348,1.043-2.348,3.029v4.809c0,1.981.8,3.029,2.348,3.029a2.909,2.909,0,0,0,2.4-1.332.656.656,0,0,1,1.02-.211l1.8,1.281a.652.652,0,0,1,.207.993,5.981,5.981,0,0,1-5.432,2.819C18194.053-2354.687,18191.756-2356.934,18191.756-2360.956Zm-21.658,3.995a.67.67,0,0,1,.027-1.016l1.543-1.592a.657.657,0,0,1,1.043,0,5.112,5.112,0,0,0,3.449,1.332c1.277,0,1.986-.627,1.986-1.753,0-.965-.709-1.409-2.795-1.775-3.84-.654-5.332-2.247-5.332-5.459,0-3.29,2.3-5.431,5.826-5.431a7.5,7.5,0,0,1,5.486,1.853.681.681,0,0,1,0,1.043l-1.543,1.569a.7.7,0,0,1-1.043.023,3.9,3.9,0,0,0-2.664-.938c-1.281,0-1.984.627-1.984,1.748,0,.97.73,1.437,2.795,1.78,3.84.627,5.326,2.247,5.326,5.459,0,3.29-2.3,5.431-5.824,5.431A8.322,8.322,0,0,1,18170.1-2356.961Zm-14.99-3.812v-10.84a.659.659,0,0,1,.727-.732h2.613a.662.662,0,0,1,.732.732v10.63c0,1.881.705,2.746,2.17,2.746s2.168-.865,2.168-2.746v-10.63a.662.662,0,0,1,.732-.732h2.508a.657.657,0,0,1,.727.732v10.84c0,3.917-2.219,6.086-6.186,6.086S18155.107-2356.856,18155.107-2360.773Zm67.471,5.775a.663.663,0,0,1-.732-.732v-15.883a.663.663,0,0,1,.732-.732h2.613a.662.662,0,0,1,.732.732v13.059h6.189a.661.661,0,0,1,.732.732v2.091a.661.661,0,0,1-.732.732Zm-6.557,0a.752.752,0,0,1-.811-.627l-.572-2.119h-5.121l-.576,2.119a.752.752,0,0,1-.809.627h-2.664c-.521,0-.76-.316-.6-.837l4.859-15.91a.794.794,0,0,1,.814-.6h3.186a.792.792,0,0,1,.809.6l4.859,15.91c.156.521-.078.837-.6.837Zm-5.588-6.141h3.318l-1.648-6.452h-.055Zm-25.107,6.141a.661.661,0,0,1-.729-.732v-15.883a.66.66,0,0,1,.729-.732h2.617a.66.66,0,0,1,.729.732v15.883a.661.661,0,0,1-.729.732Zm-36.908,0a.661.661,0,0,1-.732-.732v-11h-.051l-3.395,11.129a.794.794,0,0,1-.811.6h-1.83a.794.794,0,0,1-.811-.6l-3.422-11.206h-.051v11.078a.662.662,0,0,1-.732.732h-2.508a.662.662,0,0,1-.732-.732v-15.883a.662.662,0,0,1,.732-.732h4.521a.774.774,0,0,1,.811.6l3.156,10.529h.055l3.158-10.529a.777.777,0,0,1,.814-.6h4.438a.661.661,0,0,1,.732.732v15.883a.661.661,0,0,1-.732.732Z" transform="translate(-18133.344 2372.656)" fill="#fff"/>
                 </svg>
             </div>
-            <div class="flex justify-around">
-                <div class="uppercase text-base mr-12 tracking-wide">Courses</div>
-                <div class=" uppercase text-base mr-12 tracking-wide">Sign Up</div>
-                <div class="uppercase text-base tracking-wide">Sign In</div>
+            <div class="lg:flex lg:flex-row lg:justify-center lg:px-0 lg:w-1/2
+                        md:flex md:flex-row md:justify-around md:px-20 md:w-full
+                        sm:flex sm:flex-row sm:justify-around sm:px-20 sm:w-full
+                        xs:flex xs:flex-row xs:justify-around xs:px-4 xs:w-full">
+                <div class="uppercase text-base tracking-wide
+                            lg:mr-12">
+                    Courses
+                </div>
+                <div class="uppercase text-base tracking-wide
+                            lg:mr-12">
+                    Sign Up
+                </div>
+                <div class="uppercase text-base tracking-wide
+                            lg:mr-12">
+                    Sign In
+                </div>
             </div>
         </div>
 
-        <div class="flex justify-center">
-            <div class="text-white text-lg mt-64 w-1/3 px-16">
-                <div class="text-3xl font-bold font-source">Take the fast track to learning a new instrument</div>
-                <div class="my-4 pr-20 text-base">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod.</div>
-                <div class="bg-pink w-2/3 p-2 rounded uppercase text-center font-bold">Subscribe</div>
+        <div class="lg:flex lg:justify-center
+                    md:flex md:justify-center
+                    sm:flex sm:justify-center
+                    xs:flex xs:justify-center">
+            <div class="lg:text-white lg:text-lg lg:mt-64 lg:w-1/3
+                        md:text-white md:text-lg md:mt-12 md:w-full
+                        sm:text-white sm:text-lg sm:mt-12 sm:w-full
+                        xs:text-white xs:text-lg xs:mt-12 xs:w-full">
+                <div class="font-bold font-source
+                            lg:text-3xl lg:text-left
+                            md:text-3xl md:text-center
+                            sm:text-3xl sm:text-center
+                            xs:text-2xl xs:text-center xs:px-4">
+                    Take the fast track to learning a new instrument
+                </div>
+                <div class="text-base
+                            lg:my-4 lg:px-0 lg:text-left lg:mr-32
+                            md:my-4 md:px-20 md:text-center
+                            sm:my-4 sm:px-20 sm:text-center
+                            xs:my-4 xs:px-12 xs:text-center">
+                    Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod.
+                </div>
+                <div class="lg:flex lg:flex-row lg:justify-start
+                            md:flex md:flex-row md:justify-center
+                            sm:flex sm:flex-row sm:justify-center
+                            xs:flex xs:flex-row xs:justify-center">
+                    <div class="bg-pink rounded uppercase font-bold
+                                lg:w-2/3 lg:p-2 lg:text-center
+                                md:w-1/3 md:p-2 md:text-center
+                                sm:w-1/3 sm:p-2 sm:text-center
+                                xs:w-1/2 xs:p-2 xs:text-center xs:text-sm">
+                        Subscribe
+                    </div>
+                </div>
             </div>
-            <div class="mt-16 ml-24">
+            <div class="lg:mt-16 lg:ml-24 lg:flex
+                        md:hidden
+                        sm:hidden
+                        xs:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="440" height="518.486" viewBox="0 0 440 518.486">
                     <defs>
                         <radialGradient id="radial-gradient" cx="0.608" cy="0.146" r="0.781" gradientUnits="objectBoundingBox">
@@ -1241,12 +1292,18 @@
             </div>
         </div>
 
-        <div class="flex justify-center mt-24">
+        <div class="lg:flex lg:flex-row lg:justify-center lg:mt-24
+                    md:flex md:flex-row md:justify-center md:mt-24
+                    sm:flex sm:flex-row sm:justify-center sm:mt-24
+                    xs:flex xs:flex-row xs:justify-center xs:mt-24">
             <img src="../../images/chevron-down-wide@3x.png">
         </div>
 
-        <div class="flex justify-around mt-24 mx-64">
-            <div class="flex flex-col items-center w-1/3 px-5">
+        <div class="lg:flex lg:flex-row lg:justify-around lg:mt-24 lg:mx-32
+                    md:flex md:flex-col md:text-center md:mt-24
+                    sm:flex sm:flex-col sm:text-center sm:mt-24
+                    xs:flex xs:flex-col xs:text-center xs:mt-24">
+            <div class="lg:flex lg:flex-col lg:items-center lg:w-1/3 lg:px-5">
                 <div>
                     <svg id="guitar-outline" xmlns="http://www.w3.org/2000/svg" width="134" height="134" viewBox="0 0 134 134">
                         <rect id="Rectangle_3" data-name="Rectangle 3" width="134" height="134" fill="none"/>
@@ -1255,12 +1312,30 @@
                         </g>
                     </svg>
                 </div>
-                <div class="mt-8">
-                    <div class="text-pink text-lg text-center">Sequential Music Lessons</div>
-                    <div class="font-lato mt-2 text-center text-grey-darker">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                <div class="lg:mt-8
+                            md:mt-3
+                            sm:mt-3
+                            xs:mt-3">
+                    <div class="text-pink
+                                lg:text-lg lg:text-center
+                                md:text-lg
+                                sm:text-lg
+                                xs:text-lg">
+                        Sequential Music Lessons
+                    </div>
+                    <div class="font-lato text-grey-darker
+                                lg:mt-2 lg:text-center lg:px-0
+                                md:mt-2 md:px-32
+                                sm:mt-2 sm:px-32
+                                xs:mt-2 xs:px-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-col items-center w-1/3 px-5">
+            <div class="lg:flex lg:flex-col lg:items-center lg:w-1/3 lg:px-5 lg:mt-0
+                        md:mt-12
+                        sm:mt-12
+                        xs:mt-12">
                 <div>
                     <svg id="brain-outline" xmlns="http://www.w3.org/2000/svg" width="134" height="134" viewBox="0 0 134 134">
                         <rect id="Rectangle_4" data-name="Rectangle 4" width="134" height="134" transform="translate(0 0)" fill="none"/>
@@ -1269,12 +1344,27 @@
                         </g>
                     </svg>
                 </div>
-                <div class="mt-8">
-                    <div class="text-pink text-lg text-center">Developmentally Appropriate Content</div>
-                    <div class="font-lato mt-2 text-center text-grey-darker">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                <div class="lg:mt-8">
+                    <div class="text-pink
+                                lg:text-lg lg:text-center
+                                md:text-lg
+                                sm:text-lg
+                                xs:text-lg xs:px-4">
+                        Developmentally Appropriate Content
+                    </div>
+                    <div class="font-lato text-grey-darker
+                                lg:mt-2 lg:text-center lg:px-0
+                                md:mt-2 md:px-32
+                                sm:mt-2 sm:px-32
+                                xs:mt-2 xs:px-4">
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-col items-center w-1/3 px-5">
+            <div class="lg:flex lg:flex-col lg:items-center lg:w-1/3 lg:px-5 lg:mt-0
+                        md:mt-12
+                        sm:mt-12
+                        xs:mt-12">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="134" height="134" viewBox="0 0 134 134">
                         <g id="download" transform="translate(12 12)">
@@ -1285,65 +1375,189 @@
                         </g>
                     </svg>
                 </div>
-                <div class="mt-8">
-                    <div class="text-pink text-lg text-center">Downloadable Lessons</div>
-                    <div class="font-lato mt-2 text-center text-grey-darker">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+                <div class="lg:mt-8">
+                    <div class="text-pink
+                                lg:text-lg lg:text-center
+                                md:text-lg
+                                sm:text-lg
+                                xs:text-lg">
+                        Downloadable Lessons
+                    </div>
+                    <div class="font-lato text-grey-darker
+                                lg:mt-2 lg:text-center lg:px-0
+                                md:mt-2 md:px-32
+                                sm:mt-2 sm:px-32
+                                xs:mt-2 xs:px-4">
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="flex flex-col pb-20 bg-white">
-        <div class="font-bold mb-4 mt-16 text-3xl text-center text-grey-darker">Categories</div>
-        <div class="flex justify-center mb-12">
-            <div class="flex flex-col">
-                <div class="mb-3">
+    <div class="bg-white
+                lg:flex lg:flex-col lg:pb-20
+                md:flex md:flex-col md:pb-20
+                sm:flex sm:flex-col sm:pb-20
+                xs:flex xs:flex-col xs:pb-20">
+        <div class="text-grey-darker
+                    lg:font-bold lg:mb-8 lg:mt-16 lg:text-3xl lg:text-center
+                    md:font-bold md:mb-8 md:text-3xl md:text-center
+                    sm:font-bold sm:mb-8 sm:text-3xl sm:text-center
+                    xs:font-bold xs:mb-8 xs:text-2xl xs:text-center">
+            Categories
+        </div>
+
+        <div class="lg:flex lg:justify-center lg:mb-8">
+            <div class="lg:flex lg:flex-col
+                        md:text-center md:mb-6
+                        sm:text-center sm:mb-6
+                        xs:text-center xs:mb-6 xs:px-4">
+                <div class="lg:mb-3
+                            md:mb-1
+                            sm:mb-1
+                            xs:mb-1">
                     <img src="../../images/Mask Group 28@2x.png">
                 </div>
-                <div class="font-bold text-center text-grey-darker text-xl">Where To Start</div>
+                <div class="text-grey-darker
+                            lg:font-bold lg:text-center lg:text-xl
+                            md:font-bold md:text-center md:text-xl
+                            sm:font-bold sm:text-center sm:text-xl
+                            xs:font-bold xs:text-center xs:text-lg">
+                    Where To Start
+                </div>
             </div>
-            <div class="flex flex-col mx-8">
-                <div class="mb-3">
+            <div class="lg:flex lg:flex-col lg:mx-8
+                        md:text-center md:mb-6
+                        sm:text-center sm:mb-6
+                        xs:text-center xs:mb-6 xs:px-4">
+                <div class="lg:mb-3
+                            md:mb-1
+                            sm:mb-1
+                            xs:mb-1">
                     <img src="../../images/Mask Group 29@2x.png">
                 </div>
-                <div class="font-bold text-center text-grey-darker text-xl">Instrument Introduction</div>
+                <div class="text-grey-darker
+                            lg:font-bold lg:text-center lg:text-xl
+                            md:font-bold md:text-center md:text-xl
+                            sm:font-bold sm:text-center sm:text-xl
+                            xs:font-bold xs:text-center xs:text-lg">
+                    Instrument Introduction
+                </div>
             </div>
-            <div class="flex flex-col">
-                <div class="mb-3">
+            <div class="lg:flex lg:flex-col
+                        md:text-center md:mb-6
+                        sm:text-center sm:mb-6
+                        xs:text-center xs:mb-6 xs:px-4">
+                <div class="lg:mb-3
+                            md:mb-1
+                            sm:mb-1
+                            xs:mb-1">
                     <img src="../../images/Mask Group 25@2x.png">
                 </div>
-                <div class="font-bold text-center text-grey-darker text-xl">Learn To Play</div>
+                <div class="text-grey-darker
+                            lg:font-bold lg:text-center lg:text-xl
+                            md:font-bold md:text-center md:text-xl
+                            sm:font-bold sm:text-center sm:text-xl
+                            xs:font-bold xs:text-center xs:text-lg">
+                    Learn To Play
+                </div>
             </div>
         </div>
-        <div class="flex justify-center mb-12">
-            <div class="flex flex-col">
-                <div class="mb-3">
+
+        <div class="lg:flex lg:justify-center lg:mb-8">
+            <div class="lg:flex lg:flex-col
+                        md:text-center md:mb-6
+                        sm:text-center sm:mb-6
+                        xs:text-center xs:mb-6 xs:px-4">
+                <div class="lg:mb-3
+                            md:mb-1
+                            sm:mb-1
+                            xs:mb-1">
                     <img src="../../images/Mask Group 24@2x.png">
                 </div>
-                <div class="font-bold text-center text-grey-darker text-xl">Instrument Care</div>
+                <div class="text-grey-darker
+                            lg:font-bold lg:text-center lg:text-xl
+                            md:font-bold md:text-center md:text-xl
+                            sm:font-bold sm:text-center sm:text-xl
+                            xs:font-bold xs:text-center xs:text-lg">
+                    Instrument Care
+                </div>
             </div>
-            <div class="flex flex-col mx-8">
-                <div class="mb-3">
+            <div class="lg:flex lg:flex-col lg:mx-8
+                        md:text-center md:mb-6
+                        sm:text-center sm:mb-6
+                        xs:text-center xs:mb-6 xs:px-4">
+                <div class="lg:mb-3
+                            md:mb-1
+                            sm:mb-1
+                            xs:mb-1">
                     <img src="../../images/Mask Group 26@2x.png">
                 </div>
-                <div class="font-bold text-center text-grey-darker text-xl">Songs That Teach</div>
+                <div class="text-grey-darker
+                            lg:font-bold lg:text-center lg:text-xl
+                            md:font-bold md:text-center md:text-xl
+                            sm:font-bold sm:text-center sm:text-xl
+                            xs:font-bold xs:text-center xs:text-lg">
+                    Songs That Teach
+                </div>
             </div>
-            <div class="flex flex-col">
-                <div class="mb-3">
+            <div class="lg:flex lg:flex-col
+                        md:text-center md:mb-6
+                        sm:text-center sm:mb-6
+                        xs:text-center xs:mb-6 xs:px-4">
+                <div class="lg:mb-3
+                            md:mb-1
+                            sm:mb-1
+                            xs:mb-1">
                     <img src="../../images/Mask Group 27@2x.png">
                 </div>
-                <div class="font-bold text-center text-grey-darker text-xl">Performances</div>
+                <div class="text-grey-darker
+                            lg:font-bold lg:text-center lg:text-xl
+                            md:font-bold md:text-center md:text-xl
+                            sm:font-bold sm:text-center sm:text-xl
+                            xs:font-bold xs:text-center xs:text-lg">
+                    Performances
+                </div>
             </div>
         </div>
-        <div class="flex justify-center">
-            <div class="w-1/6 bg-pink p-2 rounded uppercase text-center text-white font-bold">Explore Courses</div>
+        <div class="lg:flex lg:justify-center lg:mt-0
+                    md:flex md:justify-center md:mt-4
+                    sm:flex sm:justify-center sm:mt-4
+                    xs:flex xs:justify-center xs:mt-4">
+            <div class="bg-pink rounded uppercase text-white
+                        lg:w-1/6 lg:p-2 lg:text-center lg:font-bold
+                        md:w-1/3 md:p-2 md:text-center md:font-bold
+                        sm:w-1/3 sm:p-2 sm:text-center sm:font-bold
+                        xs:p-2 xs:text-center xs:font-bold xs:text-small">
+                Explore Courses
+            </div>
         </div>
     </div>
 
-    <div class="flex justify-center bg-grey-lighter py-32">
-        <div class="flex flex-col items-center">
-            <div class="font-bold mb-10 text-3xl text-grey-darkest">Ready to unlock your musical potential?</div>
-            <div class="bg-pink w-3/5 p-2 rounded uppercase text-center text-white font-bold">Subscribe</div>
+    <div class="bg-grey-lighter
+                lg:flex lg:flex-row lg:justify-center lg:py-32
+                md:flex md:flex-row md:justify-center md:py-12
+                sm:flex sm:flex-row sm:justify-center sm:py-12
+                xs:flex xs:flex-row xs:justify-center xs:py-12">
+        <div class="lg:flex lg:flex-col lg:items-center
+                    md:flex md:flex-col md:items-center
+                    sm:flex sm:flex-col sm:items-center
+                    xs:flex xs:flex-col xs:items-center">
+            <div class="text-grey-darkest font-bold
+                        lg:mb-10 lg:text-3xl
+                        md:mb-4 md:text-2xl
+                        sm:mb-4 sm:text-2xl
+                        xs:mb-4 xs:text-base">
+                Ready to unlock your musical potential?
+            </div>
+            <div class="bg-pink text-white font-bold rounded uppercase
+                        lg:w-3/5 lg:p-2 lg:text-center
+                        md:w-1/3 md:p-2 md:text-center
+                        sm:w-1/3 sm:p-2 sm:text-center
+                        xs:w-1/2 xs:p-2 xs:text-center xs:text-sm">
+                Subscribe
+            </div>
         </div>
     </div>
 
