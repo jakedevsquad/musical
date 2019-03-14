@@ -47,11 +47,11 @@
                             lg:mr-12">
                     Courses
                 </a>
-                <a href="register" class="uppercase text-base tracking-wide text-white
+                <a href="{{ route('register') }}" class="uppercase text-base tracking-wide text-white
                             lg:mr-12">
                     Sign Up
                 </a>
-                <a href="login" class="uppercase text-base tracking-wide text-white
+                <a href="{{ route('login') }}" class="uppercase text-base tracking-wide text-white
                             lg:mr-12">
                     Sign In
                 </a>
