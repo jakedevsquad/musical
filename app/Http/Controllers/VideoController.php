@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VideoController extends Controller
 {
@@ -14,7 +15,15 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::paginate(10);
+        $filter = request('filter');
+        if ($filter) {
+            $filter = '%' . $filter . '%';
+            $query  = Video::query()->where('name', 'like', $filter);
+            $videos = $query->paginate(10);
+        } else {
+            $videos = Video::paginate(10);
+        }
+
         return view('videos', ['videos' => $videos]);
     }
 
@@ -31,7 +40,7 @@ class VideoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,7 +51,7 @@ class VideoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Video  $video
+     * @param  \App\Video $video
      * @return \Illuminate\Http\Response
      */
     public function show(Video $video)
@@ -53,7 +62,7 @@ class VideoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Video  $video
+     * @param  \App\Video $video
      * @return \Illuminate\Http\Response
      */
     public function edit(Video $video)
@@ -64,8 +73,8 @@ class VideoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Video  $video
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Video $video
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Video $video)
@@ -76,7 +85,7 @@ class VideoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Video  $video
+     * @param  \App\Video $video
      * @return \Illuminate\Http\Response
      */
     public function destroy(Video $video)

@@ -1763,6 +1763,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1813,10 +1815,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['videos'],
-  computed: {
-    numPages: function numPages() {}
+  data: function data() {
+    return {
+      filterText: ''
+    };
+  },
+  methods: {
+    filter: lodash__WEBPACK_IMPORTED_MODULE_0___default.a.debounce(function () {
+      window.location = "/videos?page=1&filter=" + this.filterText;
+    }, 700)
   }
 });
 
@@ -36866,11 +36893,47 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "w-2/3 mx-auto" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "flex justify-end" }, [
+        _c("div", { staticClass: "mr-6" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.filterText,
+                expression: "filterText"
+              }
+            ],
+            staticClass: "bg-white shadow-sm rounded p-3 focus:outline-none",
+            attrs: { type: "search", placeholder: "Search by name..." },
+            domProps: { value: _vm.filterText },
+            on: {
+              input: [
+                function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.filterText = $event.target.value
+                },
+                _vm.filter
+              ]
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-blue hover:bg-blue-dark text-white shadow-sm font-bold py-2 px-4 rounded"
+          },
+          [_vm._v("\n                Add Video\n            ")]
+        )
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "bg-white shadow-md rounded my-6" }, [
         _c("table", { staticClass: "text-left w-full border-collapse" }, [
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
@@ -36894,7 +36957,7 @@ var render = function() {
                   [_vm._v(_vm._s(video.description))]
                 ),
                 _vm._v(" "),
-                _vm._m(2, true)
+                _vm._m(1, true)
               ])
             }),
             0
@@ -36971,21 +37034,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-right" }, [
-      _c(
-        "button",
-        {
-          staticClass:
-            "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
-        },
-        [_vm._v("\n                Add Video\n            ")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c(
@@ -36994,7 +37042,7 @@ var staticRenderFns = [
             staticClass:
               "py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"
           },
-          [_vm._v("Name")]
+          [_vm._v("\n                        Name\n                    ")]
         ),
         _vm._v(" "),
         _c(
@@ -37003,7 +37051,7 @@ var staticRenderFns = [
             staticClass:
               "py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"
           },
-          [_vm._v("Filename")]
+          [_vm._v("\n                        Filename\n                    ")]
         ),
         _vm._v(" "),
         _c(
@@ -37012,7 +37060,11 @@ var staticRenderFns = [
             staticClass:
               "py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"
           },
-          [_vm._v("Description")]
+          [
+            _vm._v(
+              "\n                        Description\n                    "
+            )
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -37021,7 +37073,7 @@ var staticRenderFns = [
             staticClass:
               "py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"
           },
-          [_vm._v("Actions")]
+          [_vm._v("\n                        Actions\n                    ")]
         )
       ])
     ])
