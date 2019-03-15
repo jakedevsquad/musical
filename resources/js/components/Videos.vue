@@ -34,15 +34,9 @@
                         <td class="py-4 px-6 border-b border-grey-light">{{ video.filename }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ video.description }}</td>
                         <td class="py-4 px-6 border-b border-grey-light w-32">
-                            <!--<a href="#"-->
-                               <!--class="text-grey-lighter font-bold py-1 px-2 rounded text-xs bg-blue hover:bg-blue-dark">Show</a>-->
-                            <!--<a href="#"-->
-                               <!--class="text-grey-lighter font-bold py-1 px-2 rounded text-xs bg-green hover:bg-green-dark">Edit</a>-->
-                            <!--<a href="#"-->
-                               <!--class="text-grey-lighter font-bold py-1 px-2 rounded text-xs bg-red hover:bg-red-dark">Delete</a>-->
-                            <span class="material-icons">slideshow</span>
-                            <span class="material-icons">edit</span>
-                            <span class="material-icons">delete</span>
+                            <span class="material-icons text-blue hover:text-blue-dark cursor-pointer hover:bg-grey-light rounded">slideshow</span>
+                            <span class="material-icons text-green hover:text-green-dark cursor-pointer hover:bg-grey-light rounded">edit</span>
+                            <span class="material-icons text-red hover:text-red-dark cursor-pointer hover:bg-grey-light rounded">delete</span>
                         </td>
                     </tr>
                     </tbody>

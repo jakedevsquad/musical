@@ -1831,12 +1831,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['videos', 'defaultFilter'],
@@ -37106,11 +37100,32 @@ var staticRenderFns = [
       "td",
       { staticClass: "py-4 px-6 border-b border-grey-light w-32" },
       [
-        _c("span", { staticClass: "material-icons" }, [_vm._v("slideshow")]),
+        _c(
+          "span",
+          {
+            staticClass:
+              "material-icons text-blue hover:text-blue-dark cursor-pointer hover:bg-grey-light rounded"
+          },
+          [_vm._v("slideshow")]
+        ),
         _vm._v(" "),
-        _c("span", { staticClass: "material-icons" }, [_vm._v("edit")]),
+        _c(
+          "span",
+          {
+            staticClass:
+              "material-icons text-green hover:text-green-dark cursor-pointer hover:bg-grey-light rounded"
+          },
+          [_vm._v("edit")]
+        ),
         _vm._v(" "),
-        _c("span", { staticClass: "material-icons" }, [_vm._v("delete")])
+        _c(
+          "span",
+          {
+            staticClass:
+              "material-icons text-red hover:text-red-dark cursor-pointer hover:bg-grey-light rounded"
+          },
+          [_vm._v("delete")]
+        )
       ]
     )
   }
