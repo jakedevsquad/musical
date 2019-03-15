@@ -24,7 +24,10 @@ class VideoController extends Controller
             $videos = Video::paginate(10);
         }
 
-        return view('videos', ['videos' => $videos]);
+        return view('videos', [
+            'videos' => $videos,
+            'filter' => request('filter')
+        ]);
     }
 
     /**

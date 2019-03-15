@@ -1834,11 +1834,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['videos'],
+  props: ['videos', 'defaultFilter'],
   data: function data() {
     return {
-      filterText: ''
+      filterText: this.defaultFilter
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$nextTick(function () {
+      return _this.$refs.filter.focus();
+    });
   },
   methods: {
     filter: lodash__WEBPACK_IMPORTED_MODULE_0___default.a.debounce(function () {
@@ -36905,7 +36912,11 @@ var render = function() {
               }
             ],
             staticClass: "bg-white shadow-sm rounded p-3 focus:outline-none",
-            attrs: { type: "search", placeholder: "Search by name..." },
+            attrs: {
+              id: "filter",
+              type: "search",
+              placeholder: "Search by name..."
+            },
             domProps: { value: _vm.filterText },
             on: {
               input: [

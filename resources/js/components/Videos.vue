@@ -3,7 +3,7 @@
         <div class="w-2/3 mx-auto">
             <div class="flex justify-end">
                 <div class="mr-6">
-                    <input type="search" class="bg-white shadow-sm rounded p-3 focus:outline-none"
+                    <input id="filter" type="search" class="bg-white shadow-sm rounded p-3 focus:outline-none"
                            placeholder="Search by name..." @input="filter" v-model="filterText">
                 </div>
                 <button class="bg-blue hover:bg-blue-dark text-white shadow-sm font-bold py-2 px-4 rounded">
@@ -68,12 +68,16 @@
 <script>
     import _ from 'lodash';
     export default {
-        props: ['videos'],
+        props: ['videos', 'defaultFilter'],
 
         data() {
             return {
-                filterText: '',
+                filterText: this.defaultFilter,
             }
+        },
+
+        mounted() {
+            this.$nextTick(() => this.$refs.filter.focus());
         },
 
         methods: {
