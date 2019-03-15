@@ -6,7 +6,7 @@
                     <input ref="filter" type="search" class="bg-white shadow-sm rounded p-3 focus:outline-none"
                            placeholder="Search by name..." @input="filter" v-model="filterText">
                 </div>
-                <button class="bg-blue hover:bg-blue-dark text-white shadow-sm font-bold py-2 px-4 rounded">
+                <button class="bg-blue hover:bg-blue-dark text-white shadow-sm font-bold py-2 px-4 rounded" @click="openVideoForm">
                     Add Video
                 </button>
             </div>
@@ -61,14 +61,17 @@
                 </ul>
             </div>
         </div>
+        <video-form ref="form" @saved="addVideo"></video-form>
     </div>
 </template>
 
 <script>
     import _ from 'lodash';
+    import VideoForm from './VideoForm';
 
     export default {
-        props: ['videos', 'defaultFilter'],
+        props     : ['videos', 'defaultFilter'],
+        components: {VideoForm},
 
         data() {
             return {
@@ -81,9 +84,17 @@
         },
 
         methods: {
-            filter: _.debounce(function (){
+            filter: _.debounce(function () {
                 window.location = "/videos?page=1&filter=" + this.filterText;
-            }, 700)
+            }, 700),
+
+            addVideo() {
+                console.log("Add Video");
+            },
+
+            openVideoForm() {
+                this.$refs.form.open();
+            }
         }
     }
 </script>
