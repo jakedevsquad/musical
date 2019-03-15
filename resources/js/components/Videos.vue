@@ -3,7 +3,7 @@
         <div class="w-2/3 mx-auto">
             <div class="flex justify-end">
                 <div class="mr-6">
-                    <input id="filter" type="search" class="bg-white shadow-sm rounded p-3 focus:outline-none"
+                    <input ref="filter" type="search" class="bg-white shadow-sm rounded p-3 focus:outline-none"
                            placeholder="Search by name..." @input="filter" v-model="filterText">
                 </div>
                 <button class="bg-blue hover:bg-blue-dark text-white shadow-sm font-bold py-2 px-4 rounded">
@@ -33,11 +33,16 @@
                         <td class="py-4 px-6 border-b border-grey-light">{{ video.name }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ video.filename }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ video.description }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">
-                            <a href="#"
-                               class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark">Edit</a>
-                            <a href="#"
-                               class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-blue hover:bg-blue-dark">View</a>
+                        <td class="py-4 px-6 border-b border-grey-light w-32">
+                            <!--<a href="#"-->
+                               <!--class="text-grey-lighter font-bold py-1 px-2 rounded text-xs bg-blue hover:bg-blue-dark">Show</a>-->
+                            <!--<a href="#"-->
+                               <!--class="text-grey-lighter font-bold py-1 px-2 rounded text-xs bg-green hover:bg-green-dark">Edit</a>-->
+                            <!--<a href="#"-->
+                               <!--class="text-grey-lighter font-bold py-1 px-2 rounded text-xs bg-red hover:bg-red-dark">Delete</a>-->
+                            <span class="material-icons">slideshow</span>
+                            <span class="material-icons">edit</span>
+                            <span class="material-icons">delete</span>
                         </td>
                     </tr>
                     </tbody>
@@ -48,16 +53,16 @@
                 <ul class="flex list-reset border border-grey-light rounded w-auto font-sans">
                     <li v-if="videos.current_page > 1">
                         <a class="block hover:text-white hover:bg-blue text-blue border-r border-grey-light px-3 py-2"
-                           :href="`/videos?page=${videos.current_page - 1}`">Previous</a>
+                           :href="`/videos?page=${videos.current_page - 1}&filter=${filterText}`">Previous</a>
                     </li>
                     <li v-for="(index) in videos.last_page">
                         <a :class="{'bg-blue text-white' : videos.current_page === index, 'border-r' : index !== videos.last_page}"
                            class="block hover:text-white hover:bg-blue text-blue border-grey-light px-3 py-2"
-                           :href="`/videos?page=${index}`">{{ index }}</a>
+                           :href="`/videos?page=${index}&filter=${filterText}`">{{ index }}</a>
                     </li>
                     <li v-if="videos.last_page > videos.current_page">
                         <a class="block hover:text-white hover:bg-blue text-blue px-3 py-2 border-l border-grey-light"
-                           :href="`/videos?page=${videos.current_page + 1}`">Next</a>
+                           :href="`/videos?page=${videos.current_page + 1}&filter=${filterText}`">Next</a>
                     </li>
                 </ul>
             </div>
@@ -67,6 +72,7 @@
 
 <script>
     import _ from 'lodash';
+
     export default {
         props: ['videos', 'defaultFilter'],
 
@@ -77,7 +83,7 @@
         },
 
         mounted() {
-            this.$nextTick(() => this.$refs.filter.focus());
+            this.$refs.filter.focus()
         },
 
         methods: {

@@ -1832,6 +1832,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['videos', 'defaultFilter'],
@@ -1841,11 +1846,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    this.$nextTick(function () {
-      return _this.$refs.filter.focus();
-    });
+    this.$refs.filter.focus();
   },
   methods: {
     filter: lodash__WEBPACK_IMPORTED_MODULE_0___default.a.debounce(function () {
@@ -36911,12 +36912,9 @@ var render = function() {
                 expression: "filterText"
               }
             ],
+            ref: "filter",
             staticClass: "bg-white shadow-sm rounded p-3 focus:outline-none",
-            attrs: {
-              id: "filter",
-              type: "search",
-              placeholder: "Search by name..."
-            },
+            attrs: { type: "search", placeholder: "Search by name..." },
             domProps: { value: _vm.filterText },
             on: {
               input: [
@@ -36992,7 +36990,11 @@ var render = function() {
                       staticClass:
                         "block hover:text-white hover:bg-blue text-blue border-r border-grey-light px-3 py-2",
                       attrs: {
-                        href: "/videos?page=" + (_vm.videos.current_page - 1)
+                        href:
+                          "/videos?page=" +
+                          (_vm.videos.current_page - 1) +
+                          "&filter=" +
+                          _vm.filterText
                       }
                     },
                     [_vm._v("Previous")]
@@ -37011,7 +37013,10 @@ var render = function() {
                       "bg-blue text-white": _vm.videos.current_page === index,
                       "border-r": index !== _vm.videos.last_page
                     },
-                    attrs: { href: "/videos?page=" + index }
+                    attrs: {
+                      href:
+                        "/videos?page=" + index + "&filter=" + _vm.filterText
+                    }
                   },
                   [_vm._v(_vm._s(index))]
                 )
@@ -37026,7 +37031,11 @@ var render = function() {
                       staticClass:
                         "block hover:text-white hover:bg-blue text-blue px-3 py-2 border-l border-grey-light",
                       attrs: {
-                        href: "/videos?page=" + (_vm.videos.current_page + 1)
+                        href:
+                          "/videos?page=" +
+                          (_vm.videos.current_page + 1) +
+                          "&filter=" +
+                          _vm.filterText
                       }
                     },
                     [_vm._v("Next")]
@@ -37093,27 +37102,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "py-4 px-6 border-b border-grey-light" }, [
-      _c(
-        "a",
-        {
-          staticClass:
-            "text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Edit")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass:
-            "text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-blue hover:bg-blue-dark",
-          attrs: { href: "#" }
-        },
-        [_vm._v("View")]
-      )
-    ])
+    return _c(
+      "td",
+      { staticClass: "py-4 px-6 border-b border-grey-light w-32" },
+      [
+        _c("span", { staticClass: "material-icons" }, [_vm._v("slideshow")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "material-icons" }, [_vm._v("edit")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "material-icons" }, [_vm._v("delete")])
+      ]
+    )
   }
 ]
 render._withStripped = true

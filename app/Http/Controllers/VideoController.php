@@ -18,10 +18,10 @@ class VideoController extends Controller
         $filter = request('filter');
         if ($filter) {
             $filter = '%' . $filter . '%';
-            $query  = Video::query()->where('name', 'like', $filter);
+            $query  = Video::query()->where('name', 'like', $filter)->orderBy('name');
             $videos = $query->paginate(10);
         } else {
-            $videos = Video::paginate(10);
+            $videos = Video::orderBy('name')->paginate(10);
         }
 
         return view('videos', [
