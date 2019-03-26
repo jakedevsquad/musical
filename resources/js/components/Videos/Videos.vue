@@ -6,7 +6,8 @@
                     <input ref="filter" type="search" class="bg-white shadow-sm rounded p-3 focus:outline-none"
                            placeholder="Search by name..." @input="filter" v-model="filterText">
                 </div>
-                <button class="bg-blue hover:bg-blue-dark text-white shadow-sm font-bold py-2 px-4 rounded" @click="openVideoForm">
+                <button class="bg-blue hover:bg-blue-dark text-white shadow-sm font-bold py-2 px-4 rounded"
+                        @click="openVideoForm">
                     Add Video
                 </button>
             </div>
@@ -18,7 +19,7 @@
                             Name
                         </th>
                         <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
-                            Filename
+                            Url
                         </th>
                         <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Description
@@ -31,7 +32,7 @@
                     <tbody>
                     <tr class="hover:bg-grey-lighter" v-for="video in videos.data">
                         <td class="py-4 px-6 border-b border-grey-light">{{ video.name }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">{{ video.filename }}</td>
+                        <td class="py-4 px-6 border-b border-grey-light">{{ video.url }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ video.description }}</td>
                         <td class="py-4 px-6 border-b border-grey-light w-32">
                             <span class="material-icons text-blue hover:text-blue-dark cursor-pointer hover:bg-grey-light rounded">slideshow</span>
@@ -66,7 +67,6 @@
 </template>
 
 <script>
-    import _ from 'lodash';
     import VideoForm from './VideoForm';
 
     export default {

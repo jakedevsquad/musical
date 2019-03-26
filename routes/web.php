@@ -21,4 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware('auth', 'is.admin')->resource('videos', 'VideoController');
+Route::middleware('auth', 'is.admin')->resource('videos', 'VideoController')->only([
+    'index', 'store', 'edit', 'destroy'
+]);;

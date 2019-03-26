@@ -1818,56 +1818,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       name: null,
       description: null,
-      file: null
+      filename: '',
+      videoUploaded: false,
+      form: null
     };
-  },
-  computed: {
-    url_store: function url_store() {
-      return route('task.store');
-    },
-    url_update: function url_update() {
-      return route('task.update', {
-        task: this.form.id
-      });
-    },
-    teams: function teams() {
-      return this.$root.teams;
-    },
-    teamMembers: function teamMembers() {
-      var _this = this;
-
-      var team = this.teams.find(function (i) {
-        return i.id === _this.form.team_id;
-      });
-      if (team) return [{
-        id: null,
-        name: ''
-      }].concat(team.users);
-      return [];
-    },
-    types: function types() {
-      return this.$root.types;
-    },
-    points: function points() {
-      return [0, 0.5, 1, 2, 3, 5, 8, 13, 21, 34];
-    }
   },
   methods: {
     setupVideo: function setupVideo() {
       var video = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      this.id = video.id;
       this.name = video.name;
       this.description = video.description;
-      this.file = video.file;
     },
     saved: function saved() {
-      this.$emit('saved');
-      this.close();
+      var _this = this;
+
+      this.form = this.setupForm();
+      window.axios.post('/videos', this.form).then(function () {
+        _this.$emit('saved');
+
+        _this.close();
+      });
     },
     open: function open() {
       var video = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -1875,11 +1858,25 @@ __webpack_require__.r(__webpack_exports__);
       $(this.$el).modal('show');
     },
     close: function close() {
+      this.$refs.video.value = null;
+      this.videoUploaded = false;
+      this.filename = '';
       $(this.$el).modal('hide');
     },
-    processFile: function processFile(event) {
-      this.file = event.target.files[0];
-      debugger;
+    setupForm: function setupForm() {
+      var form = new FormData();
+      form.append('name', this.name);
+      form.append('description', this.description);
+      form.append('video', this.$refs.video.files[0]);
+      return form;
+    },
+    videoChangeEvent: function videoChangeEvent() {
+      if (!this.$refs.video.value) {
+        return;
+      }
+
+      this.videoUploaded = true;
+      this.filename = this.$refs.video.files[0].name;
     }
   }
 });
@@ -1895,9 +1892,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _VideoForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VideoForm */ "./resources/js/components/Videos/VideoForm.vue");
+/* harmony import */ var _VideoForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VideoForm */ "./resources/js/components/Videos/VideoForm.vue");
 //
 //
 //
@@ -1965,12 +1960,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['videos', 'defaultFilter'],
   components: {
-    VideoForm: _VideoForm__WEBPACK_IMPORTED_MODULE_1__["default"]
+    VideoForm: _VideoForm__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
@@ -1981,7 +1976,7 @@ __webpack_require__.r(__webpack_exports__);
     this.$refs.filter.focus();
   },
   methods: {
-    filter: lodash__WEBPACK_IMPORTED_MODULE_0___default.a.debounce(function () {
+    filter: _.debounce(function () {
       window.location = "/videos?page=1&filter=" + this.filterText;
     }, 700),
     addVideo: function addVideo() {
@@ -37082,7 +37077,16 @@ var render = function() {
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", [
                   _c("div", { staticClass: "my-2" }, [
-                    _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+                    _c(
+                      "label",
+                      {
+                        class: {
+                          "text-red": _vm.form && _vm.form.errors.has(_vm.name)
+                        },
+                        attrs: { for: "name" }
+                      },
+                      [_vm._v("Name")]
+                    ),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -37095,6 +37099,9 @@ var render = function() {
                       ],
                       staticClass:
                         "shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none",
+                      class: {
+                        "border-red": _vm.form && _vm.form.errors.has(_vm.name)
+                      },
                       attrs: { id: "name" },
                       domProps: { value: _vm.name },
                       on: {
@@ -37139,13 +37146,18 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "mt-12 mb-4 flex flex-row justify-center" },
+                    { staticClass: "mt-12 flex flex-row justify-center" },
                     [
                       _c(
                         "label",
                         {
                           staticClass:
-                            "w-64 flex flex-col items-center px-4 py-6 text-blue rounded-lg shadow tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white"
+                            "w-64 flex flex-col items-center px-4 py-6 text-blue rounded-lg shadow tracking-wide uppercase border border-blue cursor-pointer",
+                          class: {
+                            "bg-green text-white hover:bg-green-dark":
+                              _vm.videoUploaded,
+                            "hover:bg-blue hover:text-white": !_vm.videoUploaded
+                          }
                         },
                         [
                           _c(
@@ -37171,57 +37183,39 @@ var render = function() {
                           _c(
                             "span",
                             { staticClass: "mt-2 text-base leading-normal" },
-                            [_vm._v("Select an MP4")]
+                            [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.videoUploaded
+                                    ? "MP4 Selected"
+                                    : "Select an MP4"
+                                )
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c("input", {
+                            ref: "video",
                             staticClass: "hidden",
                             attrs: { type: "file", accept: "video/mp4" },
-                            on: {
-                              change: function($event) {
-                                return _vm.processFile($event)
-                              }
-                            }
+                            on: { change: _vm.videoChangeEvent }
                           })
                         ]
                       )
                     ]
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-center text-lg" }, [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(_vm.filename) +
+                        "\n                        "
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "btn btn-link tw-text-grey-dark\n                            hover:tw-text-grey-darkest hover:tw-no-underline",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      disabled: false
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Cancel\n                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { disabled: false }
-                  },
-                  [
-                    false
-                      ? undefined
-                      : _c("span", [_vm._v("Save")])
-                  ]
-                )
-              ])
+              _vm._m(0)
             ])
           ]
         )
@@ -37229,7 +37223,28 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "btn btn-link tw-text-grey-dark\n                            hover:tw-text-grey-darkest hover:tw-no-underline",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("\n                        Cancel\n                    ")]
+      ),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-primary" }, [
+        _c("span", [_vm._v("Create")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -37312,7 +37327,7 @@ var render = function() {
                   _c(
                     "td",
                     { staticClass: "py-4 px-6 border-b border-grey-light" },
-                    [_vm._v(_vm._s(video.filename))]
+                    [_vm._v(_vm._s(video.url))]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37430,7 +37445,7 @@ var staticRenderFns = [
             staticClass:
               "py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"
           },
-          [_vm._v("\n                        Filename\n                    ")]
+          [_vm._v("\n                        Url\n                    ")]
         ),
         _vm._v(" "),
         _c(
@@ -49622,6 +49637,20 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./components/bootstrap */ "./resources/js/components/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/**
+ * Import Axios Globally
+ */
+
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -49637,6 +49666,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
 
 var app = new Vue({
   el: '#app'

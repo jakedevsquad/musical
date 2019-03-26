@@ -3,16 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Video;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class VideoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $filter = request('filter');
@@ -30,69 +23,40 @@ class VideoController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store()
     {
-        //
+        Video::create($this->validation());
+
+        return $this->ok('Video Created!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function update(Video $video)
     {
-        //
+        //TODO:: If just updating the video name or description, don't do upload of video again.
+        $video->update($this->validated());
+
+        return $this->ok('Video Updated!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Video $video
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Video $video)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Video $video
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Video $video)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Video $video
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Video $video)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Video $video
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Video $video)
     {
-        //
+        $video->delete();
+
+        return $this->ok('Video Deleted!');
+    }
+
+    private function validation()
+    {
+        $attributes = request()->validate([
+            'name'        => 'required|unique:videos|min:3|max:64',
+            'description' => 'max:1023',
+            'video'       => 'required|mimes:mp4|max:32000'
+        ]);
+
+        $path = request()->file('video')->store('videos');
+
+        unset($attributes['video']);
+
+        return array_merge($attributes, ['url' => $path]);
     }
 }
