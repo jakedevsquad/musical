@@ -1842,7 +1842,7 @@ __webpack_require__.r(__webpack_exports__);
       form: new _utils_customFormData__WEBPACK_IMPORTED_MODULE_0__["default"]({
         name: '',
         description: '',
-        video: null
+        video: ''
       })
     };
   },
@@ -1868,7 +1868,9 @@ __webpack_require__.r(__webpack_exports__);
       $(this.$el).modal('hide');
     },
     addVideoToForm: function addVideoToForm() {
-      this.form.video = this.$refs.video.files[0];
+      if (this.$refs.video.files.length > 0) {
+        this.form.video = this.$refs.video.files[0];
+      }
     },
     videoChangeEvent: function videoChangeEvent() {
       if (!this.$refs.video.value) {

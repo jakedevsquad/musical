@@ -80,7 +80,7 @@
                 form         : new CustomFormData({
                     name: '',
                     description: '',
-                    video: null,
+                    video: '',
                 }),
             }
         },
@@ -107,7 +107,9 @@
             },
 
             addVideoToForm() {
-                this.form.video = this.$refs.video.files[0];
+                if (this.$refs.video.files.length > 0) {
+                    this.form.video = this.$refs.video.files[0];
+                }
             },
 
             videoChangeEvent() {
