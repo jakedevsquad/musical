@@ -1855,6 +1855,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.$emit('saved');
 
         _this.close();
+
+        window.location = "/videos";
       });
     },
     open: function open() {

@@ -91,6 +91,7 @@
                 this.form.submit('post', '/videos').then(() => {
                     this.$emit('saved');
                     this.close();
+                    window.location = "/videos";
                 });
             },
 
