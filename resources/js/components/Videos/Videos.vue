@@ -47,16 +47,20 @@
             <div class="flex justify-center">
                 <ul class="flex list-reset border border-grey-light rounded w-auto font-sans">
                     <li v-if="videos.current_page > 1">
-                        <a class="block hover:text-white hover:bg-blue text-blue border-r border-grey-light px-3 py-2"
+                        <a class="no-underline block hover:text-white hover:bg-blue text-blue border-r border-grey-light px-3 py-2"
                            :href="`/videos?page=${videos.current_page - 1}&filter=${filterText}`">Previous</a>
                     </li>
                     <li v-for="(index) in videos.last_page">
-                        <a :class="{'bg-blue text-white' : videos.current_page === index, 'border-r' : index !== videos.last_page}"
-                           class="block hover:text-white hover:bg-blue text-blue border-grey-light px-3 py-2"
+                        <a :class="{
+                        'bg-blue text-white' : videos.current_page === index,
+                        'bg-white text-blue' : videos.current_page !== index,
+                        'border-r' : index !== videos.last_page
+                        }"
+                           class="no-underline block hover:text-white hover:bg-blue border-grey-light px-3 py-2"
                            :href="`/videos?page=${index}&filter=${filterText}`">{{ index }}</a>
                     </li>
                     <li v-if="videos.last_page > videos.current_page">
-                        <a class="block hover:text-white hover:bg-blue text-blue px-3 py-2 border-l border-grey-light"
+                        <a class="no-underline block hover:text-white hover:bg-blue text-blue px-3 py-2 border-l border-grey-light"
                            :href="`/videos?page=${videos.current_page + 1}&filter=${filterText}`">Next</a>
                     </li>
                 </ul>

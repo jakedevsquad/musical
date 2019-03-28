@@ -1763,6 +1763,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_customFormData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/customFormData */ "./resources/js/utils/customFormData.js");
 //
 //
 //
@@ -1826,55 +1827,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      name: null,
-      description: null,
       filename: '',
       videoUploaded: false,
-      form: null
+      form: new _utils_customFormData__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        name: '',
+        description: '',
+        video: null
+      })
     };
   },
   methods: {
-    setupVideo: function setupVideo() {
-      var video = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      this.name = video.name;
-      this.description = video.description;
-    },
     saved: function saved() {
       var _this = this;
 
-      this.form = this.setupForm();
-      window.axios.post('/videos', this.form).then(function () {
+      this.addVideoToForm();
+      this.form.submit('post', '/videos').then(function () {
         _this.$emit('saved');
 
         _this.close();
       });
     },
     open: function open() {
-      var video = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      this.setupVideo(video);
       $(this.$el).modal('show');
     },
     close: function close() {
       this.$refs.video.value = null;
       this.videoUploaded = false;
       this.filename = '';
+      this.form.reset();
       $(this.$el).modal('hide');
     },
-    setupForm: function setupForm() {
-      var form = new FormData();
-      form.append('name', this.name);
-      form.append('description', this.description);
-      form.append('video', this.$refs.video.files[0]);
-      return form;
+    addVideoToForm: function addVideoToForm() {
+      this.form.video = this.$refs.video.files[0];
     },
     videoChangeEvent: function videoChangeEvent() {
       if (!this.$refs.video.value) {
         return;
       }
 
+      this.form.errors.clear('video');
       this.videoUploaded = true;
       this.filename = this.$refs.video.files[0].name;
     }
@@ -1893,6 +1894,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _VideoForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VideoForm */ "./resources/js/components/Videos/VideoForm.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -37040,6 +37045,9 @@ var render = function() {
           submit: function($event) {
             $event.preventDefault()
             return _vm.saved($event)
+          },
+          keydown: function($event) {
+            return _vm.form.errors.clear($event.target.name)
           }
         }
       },
@@ -37056,7 +37064,7 @@ var render = function() {
                 _c("div", { staticClass: "modal-title" }, [
                   _vm._v(
                     "\n                        " +
-                      _vm._s(this.name ? this.name : "New Video") +
+                      _vm._s(this.form.name ? this.form.name : "New Video") +
                       "\n                    "
                   )
                 ]),
@@ -37075,75 +37083,77 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _c("div", [
-                  _c("div", { staticClass: "my-2" }, [
-                    _c(
-                      "label",
+                _c("div", { staticClass: "my-2" }, [
+                  _c(
+                    "label",
+                    {
+                      class: { "text-red": _vm.form.errors.has("name") },
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Name")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
                       {
-                        class: {
-                          "text-red": _vm.form && _vm.form.errors.has(_vm.name)
-                        },
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Name")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.name,
-                          expression: "name"
-                        }
-                      ],
-                      staticClass:
-                        "shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none",
-                      class: {
-                        "border-red": _vm.form && _vm.form.errors.has(_vm.name)
-                      },
-                      attrs: { id: "name" },
-                      domProps: { value: _vm.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.name = $event.target.value
-                        }
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.name,
+                        expression: "form.name"
                       }
-                    })
+                    ],
+                    staticClass:
+                      "shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none",
+                    class: { "border-red": _vm.form.errors.has("name") },
+                    attrs: { id: "name", name: "name" },
+                    domProps: { value: _vm.form.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.form.errors.has("name")
+                    ? _c("div", { staticClass: "text-red" }, [
+                        _vm._v(_vm._s(_vm.form.errors.get("name")))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "my-2" }, [
+                  _c("label", { attrs: { for: "description" } }, [
+                    _vm._v("Description")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "my-2" }, [
-                    _c("label", { attrs: { for: "description" } }, [
-                      _vm._v("Description")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.description,
-                          expression: "description"
-                        }
-                      ],
-                      staticClass:
-                        "shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none",
-                      attrs: { id: "description" },
-                      domProps: { value: _vm.description },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.description = $event.target.value
-                        }
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.description,
+                        expression: "form.description"
                       }
-                    })
-                  ]),
-                  _vm._v(" "),
+                    ],
+                    staticClass:
+                      "shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none",
+                    attrs: { id: "description", name: "description" },
+                    domProps: { value: _vm.form.description },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "description", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", [
                   _c(
                     "div",
                     { staticClass: "mt-12 flex flex-row justify-center" },
@@ -37152,11 +37162,17 @@ var render = function() {
                         "label",
                         {
                           staticClass:
-                            "w-64 flex flex-col items-center px-4 py-6 text-blue rounded-lg shadow tracking-wide uppercase border border-blue cursor-pointer",
+                            "w-64 flex flex-col items-center px-4 py-6 rounded-lg shadow tracking-wide uppercase border cursor-pointer",
                           class: {
-                            "bg-green text-white hover:bg-green-dark":
-                              _vm.videoUploaded,
-                            "hover:bg-blue hover:text-white": !_vm.videoUploaded
+                            "border-green bg-green text-white hover:bg-green-dark":
+                              _vm.videoUploaded &&
+                              !_vm.form.errors.has("video"),
+                            "border-blue text-blue hover:bg-blue hover:text-white":
+                              !_vm.videoUploaded &&
+                              !_vm.form.errors.has("video"),
+                            "border-red text-red hover:bg-red hover:text-white": _vm.form.errors.has(
+                              "video"
+                            )
                           }
                         },
                         [
@@ -37197,7 +37213,11 @@ var render = function() {
                           _c("input", {
                             ref: "video",
                             staticClass: "hidden",
-                            attrs: { type: "file", accept: "video/mp4" },
+                            attrs: {
+                              name: "video",
+                              type: "file",
+                              accept: "video/mp4"
+                            },
                             on: { change: _vm.videoChangeEvent }
                           })
                         ]
@@ -37205,17 +37225,47 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "text-center text-lg" }, [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(_vm.filename) +
-                        "\n                        "
-                    )
-                  ])
+                  _vm.form.errors.has("video")
+                    ? _c("div", { staticClass: "text-red text-center mt-2" }, [
+                        _vm._v(_vm._s(_vm.form.errors.get("video")))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-center text-lg" }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.filename) +
+                      "\n                    "
+                  )
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(0)
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-link tw-text-grey-dark\n                            hover:tw-text-grey-darkest hover:tw-no-underline",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: { click: _vm.close }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Cancel\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { disabled: _vm.form.errors.any() }
+                  },
+                  [_c("span", [_vm._v("Create")])]
+                )
+              ])
             ])
           ]
         )
@@ -37223,28 +37273,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass:
-            "btn btn-link tw-text-grey-dark\n                            hover:tw-text-grey-darkest hover:tw-no-underline",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("\n                        Cancel\n                    ")]
-      ),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-primary" }, [
-        _c("span", [_vm._v("Create")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -37358,7 +37387,7 @@ var render = function() {
                       "a",
                       {
                         staticClass:
-                          "block hover:text-white hover:bg-blue text-blue border-r border-grey-light px-3 py-2",
+                          "no-underline block hover:text-white hover:bg-blue text-blue border-r border-grey-light px-3 py-2",
                         attrs: {
                           href:
                             "/videos?page=" +
@@ -37378,9 +37407,10 @@ var render = function() {
                     "a",
                     {
                       staticClass:
-                        "block hover:text-white hover:bg-blue text-blue border-grey-light px-3 py-2",
+                        "no-underline block hover:text-white hover:bg-blue border-grey-light px-3 py-2",
                       class: {
                         "bg-blue text-white": _vm.videos.current_page === index,
+                        "bg-white text-blue": _vm.videos.current_page !== index,
                         "border-r": index !== _vm.videos.last_page
                       },
                       attrs: {
@@ -37399,7 +37429,7 @@ var render = function() {
                       "a",
                       {
                         staticClass:
-                          "block hover:text-white hover:bg-blue text-blue px-3 py-2 border-l border-grey-light",
+                          "no-underline block hover:text-white hover:bg-blue text-blue px-3 py-2 border-l border-grey-light",
                         attrs: {
                           href:
                             "/videos?page=" +
@@ -49885,6 +49915,179 @@ __webpack_require__.r(__webpack_exports__);
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('videos', _Videos_Videos__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/utils/customFormData.js":
+/*!**********************************************!*\
+  !*** ./resources/js/utils/customFormData.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Form; });
+/* harmony import */ var _errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./errors */ "./resources/js/utils/errors.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Form =
+/*#__PURE__*/
+function () {
+  function Form(data) {
+    _classCallCheck(this, Form);
+
+    this.originalData = data;
+
+    for (var field in data) {
+      this[field] = data[field];
+    }
+
+    this.errors = new _errors__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  }
+
+  _createClass(Form, [{
+    key: "data",
+    value: function data() {
+      var data = new FormData();
+
+      for (var property in this.originalData) {
+        data.append(property, this[property]);
+      }
+
+      return data;
+    }
+  }, {
+    key: "reset",
+    value: function reset() {
+      for (var field in this.originalData) {
+        this[field] = '';
+      }
+
+      this.errors.clear();
+    }
+  }, {
+    key: "post",
+    value: function post(url) {
+      return this.submit('post', url);
+    }
+  }, {
+    key: "put",
+    value: function put(url) {
+      return this.submit('put', url);
+    }
+  }, {
+    key: "delete",
+    value: function _delete(url) {
+      return this.submit('delete', url);
+    }
+  }, {
+    key: "submit",
+    value: function submit(requestType, url) {
+      var _this = this;
+
+      return new Promise(function (resolve, reject) {
+        window.axios[requestType](url, _this.data()).then(function (response) {
+          _this.onSuccess(response.data);
+
+          resolve(response.data);
+        }).catch(function (error) {
+          _this.onFail(error.response);
+
+          reject(error.response.data);
+        });
+      });
+    }
+  }, {
+    key: "onSuccess",
+    value: function onSuccess() {
+      this.reset();
+    }
+  }, {
+    key: "onFail",
+    value: function onFail(response) {
+      this.errors.record(response);
+    }
+  }]);
+
+  return Form;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/utils/errors.js":
+/*!**************************************!*\
+  !*** ./resources/js/utils/errors.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Errors; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Errors =
+/*#__PURE__*/
+function () {
+  function Errors() {
+    _classCallCheck(this, Errors);
+
+    this.errors = {};
+  }
+
+  _createClass(Errors, [{
+    key: "has",
+    value: function has(field) {
+      return this.errors.hasOwnProperty(field);
+    }
+  }, {
+    key: "any",
+    value: function any() {
+      return Object.keys(this.errors).length > 0;
+    }
+  }, {
+    key: "get",
+    value: function get(field) {
+      if (this.errors[field]) {
+        return this.errors[field][0];
+      }
+    }
+  }, {
+    key: "record",
+    value: function record(response) {
+      if (response.status === 422) {
+        this.errors = response.data.errors;
+      }
+    }
+  }, {
+    key: "clear",
+    value: function clear(field) {
+      if (field) {
+        delete this.errors[field];
+        return;
+      }
+
+      this.errors = {};
+    }
+  }]);
+
+  return Errors;
+}();
+
+
 
 /***/ }),
 
