@@ -1754,6 +1754,122 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Videos/CreateVideo.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Videos/CreateVideo.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_customFormData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/customFormData */ "./resources/js/utils/customFormData.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      filename: '',
+      videoUploaded: false,
+      form: new _utils_customFormData__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        name: '',
+        description: '',
+        video: ''
+      })
+    };
+  },
+  methods: {
+    saved: function saved() {
+      this.addVideoToForm();
+      this.form.submit('post', '/videos').then(function () {
+        window.location = "/videos";
+      });
+    },
+    addVideoToForm: function addVideoToForm() {
+      if (this.$refs.video.files.length > 0) {
+        this.form.video = this.$refs.video.files[0];
+      }
+    },
+    videoChangeEvent: function videoChangeEvent() {
+      if (!this.$refs.video.value) {
+        return;
+      }
+
+      this.form.errors.clear('video');
+      this.videoUploaded = true;
+      this.filename = this.$refs.video.files[0].name;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Videos/VideoForm.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Videos/VideoForm.vue?vue&type=script&lang=js& ***!
@@ -1992,7 +2108,8 @@ __webpack_require__.r(__webpack_exports__);
       console.log("Add Video");
     },
     openVideoForm: function openVideoForm() {
-      this.$refs.form.open();
+      // this.$refs.form.open();
+      window.location = "/videos/create";
     }
   }
 });
@@ -37026,6 +37143,271 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Videos/CreateVideo.vue?vue&type=template&id=0e133b9a&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Videos/CreateVideo.vue?vue&type=template&id=0e133b9a& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "flex flex-row justify-around ml-32 mr-64" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "flex flex-row justify-center w-full",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.saved($event)
+            },
+            keydown: function($event) {
+              return _vm.form.errors.clear($event.target.name)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "border px-8 py-4 rounded shadow w-full" }, [
+            _c("div", { staticClass: "text-xl mb-8" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(this.form.name ? this.form.name : "New Video") +
+                  "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", {}, [
+              _c("div", { staticClass: "my-4" }, [
+                _c(
+                  "label",
+                  {
+                    class: { "text-red": _vm.form.errors.has("name") },
+                    attrs: { for: "name" }
+                  },
+                  [_vm._v("Name")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.name,
+                      expression: "form.name"
+                    }
+                  ],
+                  staticClass:
+                    "leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none",
+                  class: { "border-red": _vm.form.errors.has("name") },
+                  attrs: { id: "name", name: "name", maxlength: "64" },
+                  domProps: { value: _vm.form.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.form.errors.has("name")
+                  ? _c("div", { staticClass: "text-red" }, [
+                      _vm._v(_vm._s(_vm.form.errors.get("name")))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "my-4" }, [
+                _c("label", { attrs: { for: "description" } }, [
+                  _vm._v("Description")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.description,
+                      expression: "form.description"
+                    }
+                  ],
+                  staticClass:
+                    "leading-loose tracking-wide shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none resize-none",
+                  attrs: {
+                    rows: "6",
+                    id: "description",
+                    name: "description",
+                    maxlength: "1023"
+                  },
+                  domProps: { value: _vm.form.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "description", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mt-8 flex flex-row justify-center" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "w-64 flex flex-col items-center px-4 py-6 rounded-lg shadow tracking-wide uppercase border cursor-pointer",
+                    class: {
+                      "border-green bg-green text-white hover:bg-green-dark":
+                        _vm.videoUploaded && !_vm.form.errors.has("video"),
+                      "border-pink text-pink hover:bg-pink hover:text-white":
+                        !_vm.videoUploaded && !_vm.form.errors.has("video"),
+                      "border-red text-red hover:bg-red hover:text-white": _vm.form.errors.has(
+                        "video"
+                      )
+                    }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-8 h-8",
+                        attrs: {
+                          fill: "currentColor",
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 20 20"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "mt-2 text-base leading-normal" },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.videoUploaded ? "MP4 Selected" : "Select an MP4"
+                          )
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      ref: "video",
+                      staticClass: "hidden",
+                      attrs: {
+                        name: "video",
+                        type: "file",
+                        accept: "video/mp4"
+                      },
+                      on: { change: _vm.videoChangeEvent }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm.form.errors.has("video")
+                ? _c("div", { staticClass: "text-red text-center mt-2" }, [
+                    _vm._v(
+                      _vm._s(_vm.form.errors.get("video")) +
+                        "\n                "
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-center text-lg" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.filename) +
+                    "\n                "
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex flex-row justify-end" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "p-3 rounded shadow uppercase flex flex-row items-center justify-center",
+                  class: {
+                    "bg-pink-lighter cursor-not-allowed": _vm.form.errors.any(),
+                    "bg-pink": !_vm.form.errors.any()
+                  },
+                  attrs: { disabled: _vm.form.errors.any() }
+                },
+                [
+                  _c("span", { staticClass: "text-white font-bold" }, [
+                    _vm._v("Create")
+                  ])
+                ]
+              )
+            ])
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass:
+          "text-white no-underline font-bold bg-pink h-12 mr-12 rounded shadow w-1/5 uppercase flex flex-row items-center justify-center",
+        attrs: { href: "/videos" }
+      },
+      [_c("span", [_vm._v("Back to Videos")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass:
+          "mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold",
+        attrs: { href: "/videos" }
+      },
+      [_c("span", [_vm._v("Cancel")])]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Videos/VideoForm.vue?vue&type=template&id=47e93f9a&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Videos/VideoForm.vue?vue&type=template&id=47e93f9a& ***!
@@ -37157,84 +37539,83 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _c("div", [
-                  _c(
-                    "div",
-                    { staticClass: "mt-12 flex flex-row justify-center" },
-                    [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "w-64 flex flex-col items-center px-4 py-6 rounded-lg shadow tracking-wide uppercase border cursor-pointer",
-                          class: {
-                            "border-green bg-green text-white hover:bg-green-dark":
-                              _vm.videoUploaded &&
-                              !_vm.form.errors.has("video"),
-                            "border-blue text-blue hover:bg-blue hover:text-white":
-                              !_vm.videoUploaded &&
-                              !_vm.form.errors.has("video"),
-                            "border-red text-red hover:bg-red hover:text-white": _vm.form.errors.has(
-                              "video"
-                            )
-                          }
-                        },
-                        [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "w-8 h-8",
-                              attrs: {
-                                fill: "currentColor",
-                                xmlns: "http://www.w3.org/2000/svg",
-                                viewBox: "0 0 20 20"
-                              }
-                            },
-                            [
-                              _c("path", {
-                                attrs: {
-                                  d:
-                                    "M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
-                                }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            { staticClass: "mt-2 text-base leading-normal" },
-                            [
-                              _vm._v(
-                                _vm._s(
-                                  _vm.videoUploaded
-                                    ? "MP4 Selected"
-                                    : "Select an MP4"
-                                )
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            ref: "video",
-                            staticClass: "hidden",
+                _c(
+                  "div",
+                  { staticClass: "mt-8 flex flex-row justify-center" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "w-64 flex flex-col items-center px-4 py-6 rounded-lg shadow tracking-wide uppercase border cursor-pointer",
+                        class: {
+                          "border-green bg-green text-white hover:bg-green-dark":
+                            _vm.videoUploaded && !_vm.form.errors.has("video"),
+                          "border-blue text-blue hover:bg-blue hover:text-white":
+                            !_vm.videoUploaded && !_vm.form.errors.has("video"),
+                          "border-red text-red hover:bg-red hover:text-white": _vm.form.errors.has(
+                            "video"
+                          )
+                        }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "w-8 h-8",
                             attrs: {
-                              name: "video",
-                              type: "file",
-                              accept: "video/mp4"
-                            },
-                            on: { change: _vm.videoChangeEvent }
-                          })
-                        ]
+                              fill: "currentColor",
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          { staticClass: "mt-2 text-base leading-normal" },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.videoUploaded
+                                  ? "MP4 Selected"
+                                  : "Select an MP4"
+                              )
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          ref: "video",
+                          staticClass: "hidden",
+                          attrs: {
+                            name: "video",
+                            type: "file",
+                            accept: "video/mp4"
+                          },
+                          on: { change: _vm.videoChangeEvent }
+                        })
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.form.errors.has("video")
+                  ? _c("div", { staticClass: "text-red text-center mt-2" }, [
+                      _vm._v(
+                        _vm._s(_vm.form.errors.get("video")) +
+                          "\n                    "
                       )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm.form.errors.has("video")
-                    ? _c("div", { staticClass: "text-red text-center mt-2" }, [
-                        _vm._v(_vm._s(_vm.form.errors.get("video")))
-                      ])
-                    : _vm._e()
-                ]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "text-center text-lg" }, [
                   _vm._v(
@@ -49766,6 +50147,75 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Videos/CreateVideo.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Videos/CreateVideo.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateVideo_vue_vue_type_template_id_0e133b9a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateVideo.vue?vue&type=template&id=0e133b9a& */ "./resources/js/components/Videos/CreateVideo.vue?vue&type=template&id=0e133b9a&");
+/* harmony import */ var _CreateVideo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateVideo.vue?vue&type=script&lang=js& */ "./resources/js/components/Videos/CreateVideo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateVideo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateVideo_vue_vue_type_template_id_0e133b9a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateVideo_vue_vue_type_template_id_0e133b9a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Videos/CreateVideo.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Videos/CreateVideo.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/Videos/CreateVideo.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateVideo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateVideo.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Videos/CreateVideo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateVideo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Videos/CreateVideo.vue?vue&type=template&id=0e133b9a&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Videos/CreateVideo.vue?vue&type=template&id=0e133b9a& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateVideo_vue_vue_type_template_id_0e133b9a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateVideo.vue?vue&type=template&id=0e133b9a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Videos/CreateVideo.vue?vue&type=template&id=0e133b9a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateVideo_vue_vue_type_template_id_0e133b9a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateVideo_vue_vue_type_template_id_0e133b9a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Videos/VideoForm.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/Videos/VideoForm.vue ***!
@@ -49916,9 +50366,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Videos_Videos__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Videos/Videos */ "./resources/js/components/Videos/Videos.vue");
+/* harmony import */ var _Videos_CreateVideo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Videos/CreateVideo */ "./resources/js/components/Videos/CreateVideo.vue");
+
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('videos', _Videos_Videos__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('create-video', _Videos_CreateVideo__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 /***/ }),
 

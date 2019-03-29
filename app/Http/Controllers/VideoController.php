@@ -23,6 +23,10 @@ class VideoController extends Controller
         ]);
     }
 
+    public function create() {
+        return view('videos-create');
+    }
+
     public function store()
     {
         Video::create($this->validation());

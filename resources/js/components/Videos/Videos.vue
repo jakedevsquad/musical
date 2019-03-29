@@ -97,7 +97,8 @@
             },
 
             openVideoForm() {
-                this.$refs.form.open();
+                // this.$refs.form.open();
+                window.location = "/videos/create";
             }
         }
     }
