@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Video;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
@@ -17,14 +19,15 @@ class VideoController extends Controller
             $videos = Video::orderBy('name')->paginate(10);
         }
 
-        return view('videos', [
+        return view('video.index', [
             'videos' => $videos,
             'filter' => request('filter')
         ]);
     }
 
-    public function create() {
-        return view('videos-create');
+    public function create()
+    {
+        return view('video.create');
     }
 
     public function store()
@@ -32,6 +35,18 @@ class VideoController extends Controller
         Video::create($this->validation());
 
         return $this->ok('Video Created!');
+    }
+
+    public function show($id)
+    {
+        return view('video.show', [
+            'video' => Video::find($id)
+        ]);
+    }
+
+    public function edit($id)
+    {
+        return view('video.edit');
     }
 
     public function update(Video $video)
@@ -62,5 +77,14 @@ class VideoController extends Controller
         unset($attributes['video']);
 
         return array_merge($attributes, ['url' => $path]);
+    }
+
+    public function play($id)
+    {
+        $video = Video::find($id);
+        $fileContents = Storage::disk('local')->get("{$video->url}");
+        $response = Response::make($fileContents, 200);
+        $response->header('Content-Type', "video/mp4");
+        return $response;
     }
 }

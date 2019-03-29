@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <create-video></create-video>
+    <video-create></video-create>
 @endsection

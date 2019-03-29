@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-row justify-around ml-32 mr-64">
-        <a href="/videos"
+        <a href="/video"
            class="text-white no-underline font-bold bg-pink h-12 mr-12 rounded shadow w-1/5 uppercase flex flex-row items-center justify-center">
             <span>Back to Videos</span>
         </a>
@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="flex flex-row justify-end">
-                    <a href="/videos"
+                    <a href="/video"
                        class="mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold">
                         <span>Cancel</span>
                     </a>
@@ -86,8 +86,8 @@
         methods: {
             saved() {
                 this.addVideoToForm();
-                this.form.submit('post', '/videos').then(() => {
-                    window.location = "/videos";
+                this.form.submit('post', '/video').then(() => {
+                    window.location = "/video";
                 });
             },
 

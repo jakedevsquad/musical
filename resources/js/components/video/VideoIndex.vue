@@ -7,7 +7,7 @@
                            placeholder="Search by name..." @input="filter" v-model="filterText">
                 </div>
                 <button class="bg-blue hover:bg-blue-dark text-white shadow-sm font-bold py-2 px-4 rounded"
-                        @click="openVideoForm">
+                        @click="createVideo">
                     Add Video
                 </button>
             </div>
@@ -35,9 +35,15 @@
                         <td class="py-4 px-6 border-b border-grey-light">{{ video.url }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ video.description }}</td>
                         <td class="py-4 px-6 border-b border-grey-light w-32">
-                            <span class="material-icons text-blue hover:text-blue-dark cursor-pointer hover:bg-grey-light rounded">slideshow</span>
-                            <span class="material-icons text-green hover:text-green-dark cursor-pointer hover:bg-grey-light rounded">edit</span>
-                            <span class="material-icons text-red hover:text-red-dark cursor-pointer hover:bg-grey-light rounded">delete</span>
+                            <a :href="`/video/${video.id}`">
+                                <span class="material-icons text-blue hover:text-blue-dark cursor-pointer hover:bg-grey-light rounded">slideshow</span>
+                            </a>
+                            <a :href="`/video/${video.id}/edit`">
+                                <span class="material-icons text-green hover:text-green-dark cursor-pointer hover:bg-grey-light rounded">edit</span>
+                            </a>
+                            <button @click="destroy(video)">
+                                <span class="material-icons text-red hover:text-red-dark cursor-pointer hover:bg-grey-light rounded">delete</span>
+                            </button>
                         </td>
                     </tr>
                     </tbody>
@@ -48,7 +54,7 @@
                 <ul class="flex list-reset border border-grey-light rounded w-auto font-sans">
                     <li v-if="videos.current_page > 1">
                         <a class="no-underline block hover:text-white hover:bg-blue text-blue border-r border-grey-light px-3 py-2"
-                           :href="`/videos?page=${videos.current_page - 1}&filter=${filterText}`">Previous</a>
+                           :href="`/video?page=${videos.current_page - 1}&filter=${filterText}`">Previous</a>
                     </li>
                     <li v-for="(index) in videos.last_page">
                         <a :class="{
@@ -57,25 +63,22 @@
                         'border-r' : index !== videos.last_page
                         }"
                            class="no-underline block hover:text-white hover:bg-blue border-grey-light px-3 py-2"
-                           :href="`/videos?page=${index}&filter=${filterText}`">{{ index }}</a>
+                           :href="`/video?page=${index}&filter=${filterText}`">{{ index }}</a>
                     </li>
                     <li v-if="videos.last_page > videos.current_page">
                         <a class="no-underline block hover:text-white hover:bg-blue text-blue px-3 py-2 border-l border-grey-light"
-                           :href="`/videos?page=${videos.current_page + 1}&filter=${filterText}`">Next</a>
+                           :href="`/video?page=${videos.current_page + 1}&filter=${filterText}`">Next</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <video-form ref="form" @saved="addVideo"></video-form>
     </div>
 </template>
 
 <script>
-    import VideoForm from './VideoForm';
 
     export default {
         props     : ['videos', 'defaultFilter'],
-        components: {VideoForm},
 
         data() {
             return {
@@ -89,17 +92,18 @@
 
         methods: {
             filter: _.debounce(function () {
-                window.location = "/videos?page=1&filter=" + this.filterText;
+                window.location = "/video?page=1&filter=" + this.filterText;
             }, 700),
 
-            addVideo() {
-                console.log("Add Video");
+            createVideo() {
+                window.location = "/video/create";
             },
 
-            openVideoForm() {
-                // this.$refs.form.open();
-                window.location = "/videos/create";
-            }
+            destroy(video) {
+                window.axios.delete('/video/' + video.id).then(() => {
+                    window.location = "/video";
+                });
+            },
         }
     }
 </script>
