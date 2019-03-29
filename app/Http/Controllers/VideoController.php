@@ -46,13 +46,15 @@ class VideoController extends Controller
 
     public function edit($id)
     {
-        return view('video.edit');
+        return view('video.edit', [
+            'video' => Video::find($id)
+        ]);
     }
 
     public function update(Video $video)
     {
         //TODO:: If just updating the video name or description, don't do upload of video again.
-        $video->update($this->validated());
+        $video->update($this->validation());
 
         return $this->ok('Video Updated!');
     }

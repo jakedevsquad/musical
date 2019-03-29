@@ -1829,8 +1829,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1847,7 +1845,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     saved: function saved() {
       this.addVideoToForm();
-      this.form.submit('post', '/video').then(function () {
+      this.form.post('/video').then(function () {
         window.location = "/video";
       });
     },
@@ -1945,25 +1943,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['video'],
   data: function data() {
     return {
-      filename: '',
-      videoUploaded: false,
+      filename: this.video.name,
+      videoUploaded: true,
       form: new _utils_customFormData__WEBPACK_IMPORTED_MODULE_0__["default"]({
-        name: '',
-        description: '',
-        video: ''
+        name: this.video.name,
+        description: this.video.description,
+        video: this.video.url
       })
     };
   },
   methods: {
-    saved: function saved() {
+    updated: function updated() {
       this.addVideoToForm();
-      this.form.submit('post', '/video').then(function () {
+      this.form.put('/video/' + this.video.id).then(function () {
         window.location = "/video";
       });
     },
@@ -37355,161 +37352,148 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", {}, [
-              _c("div", { staticClass: "my-4" }, [
-                _c(
-                  "label",
+            _c("div", { staticClass: "my-4" }, [
+              _c(
+                "label",
+                {
+                  class: { "text-red": _vm.form.errors.has("name") },
+                  attrs: { for: "name" }
+                },
+                [_vm._v("Name")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
                   {
-                    class: { "text-red": _vm.form.errors.has("name") },
-                    attrs: { for: "name" }
-                  },
-                  [_vm._v("Name")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.name,
-                      expression: "form.name"
-                    }
-                  ],
-                  staticClass:
-                    "leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none",
-                  class: { "border-red": _vm.form.errors.has("name") },
-                  attrs: { id: "name", name: "name", maxlength: "64" },
-                  domProps: { value: _vm.form.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "name", $event.target.value)
-                    }
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.name,
+                    expression: "form.name"
                   }
-                }),
-                _vm._v(" "),
-                _vm.form.errors.has("name")
-                  ? _c("div", { staticClass: "text-red" }, [
-                      _vm._v(_vm._s(_vm.form.errors.get("name")))
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "my-4" }, [
-                _c("label", { attrs: { for: "description" } }, [
-                  _vm._v("Description")
-                ]),
-                _vm._v(" "),
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.description,
-                      expression: "form.description"
+                ],
+                staticClass:
+                  "leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none",
+                class: { "border-red": _vm.form.errors.has("name") },
+                attrs: { id: "name", name: "name", maxlength: "64" },
+                domProps: { value: _vm.form.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  ],
-                  staticClass:
-                    "leading-loose tracking-wide shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none resize-none",
-                  attrs: {
-                    rows: "6",
-                    id: "description",
-                    name: "description",
-                    maxlength: "1023"
-                  },
-                  domProps: { value: _vm.form.description },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "description", $event.target.value)
-                    }
+                    _vm.$set(_vm.form, "name", $event.target.value)
                   }
-                })
-              ]),
+                }
+              }),
               _vm._v(" "),
-              _c("div", { staticClass: "mt-8 flex flex-row justify-center" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass:
-                      "w-64 flex flex-col items-center px-4 py-6 rounded-lg shadow tracking-wide uppercase border cursor-pointer",
-                    class: {
-                      "border-green bg-green text-white hover:bg-green-dark":
-                        _vm.videoUploaded && !_vm.form.errors.has("video"),
-                      "border-pink text-pink hover:bg-pink hover:text-white":
-                        !_vm.videoUploaded && !_vm.form.errors.has("video"),
-                      "border-red text-red hover:bg-red hover:text-white": _vm.form.errors.has(
-                        "video"
-                      )
-                    }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "w-8 h-8",
-                        attrs: {
-                          fill: "currentColor",
-                          xmlns: "http://www.w3.org/2000/svg",
-                          viewBox: "0 0 20 20"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "mt-2 text-base leading-normal" },
-                      [
-                        _vm._v(
-                          _vm._s(
-                            _vm.videoUploaded ? "MP4 Selected" : "Select an MP4"
-                          )
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      ref: "video",
-                      staticClass: "hidden",
-                      attrs: {
-                        name: "video",
-                        type: "file",
-                        accept: "video/mp4"
-                      },
-                      on: { change: _vm.videoChangeEvent }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _vm.form.errors.has("video")
-                ? _c("div", { staticClass: "text-red text-center mt-2" }, [
-                    _vm._v(
-                      _vm._s(_vm.form.errors.get("video")) +
-                        "\n                "
-                    )
+              _vm.form.errors.has("name")
+                ? _c("div", { staticClass: "text-red" }, [
+                    _vm._v(_vm._s(_vm.form.errors.get("name")))
                   ])
-                : _vm._e(),
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "my-4" }, [
+              _c("label", { attrs: { for: "description" } }, [
+                _vm._v("Description")
+              ]),
               _vm._v(" "),
-              _c("div", { staticClass: "text-center text-lg" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.filename) +
-                    "\n                "
-                )
-              ])
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.description,
+                    expression: "form.description"
+                  }
+                ],
+                staticClass:
+                  "leading-loose tracking-wide shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none resize-none",
+                attrs: {
+                  rows: "6",
+                  id: "description",
+                  name: "description",
+                  maxlength: "1023"
+                },
+                domProps: { value: _vm.form.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "description", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "mt-8 flex flex-row justify-center" }, [
+              _c(
+                "label",
+                {
+                  staticClass:
+                    "w-64 flex flex-col items-center px-4 py-6 rounded-lg shadow tracking-wide uppercase border cursor-pointer",
+                  class: {
+                    "border-green bg-green text-white hover:bg-green-dark":
+                      _vm.videoUploaded && !_vm.form.errors.has("video"),
+                    "border-pink text-pink hover:bg-pink hover:text-white":
+                      !_vm.videoUploaded && !_vm.form.errors.has("video"),
+                    "border-red text-red hover:bg-red hover:text-white": _vm.form.errors.has(
+                      "video"
+                    )
+                  }
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "w-8 h-8",
+                      attrs: {
+                        fill: "currentColor",
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "mt-2 text-base leading-normal" }, [
+                    _vm._v(
+                      _vm._s(
+                        _vm.videoUploaded ? "MP4 Selected" : "Select an MP4"
+                      )
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    ref: "video",
+                    staticClass: "hidden",
+                    attrs: { name: "video", type: "file", accept: "video/mp4" },
+                    on: { change: _vm.videoChangeEvent }
+                  })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _vm.form.errors.has("video")
+              ? _c("div", { staticClass: "text-red text-center mt-2" }, [
+                  _vm._v(
+                    _vm._s(_vm.form.errors.get("video")) + "\n            "
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-center text-lg" }, [
+              _vm._v(
+                "\n                " + _vm._s(_vm.filename) + "\n            "
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "flex flex-row justify-end" }, [
@@ -37603,7 +37587,7 @@ var render = function() {
           on: {
             submit: function($event) {
               $event.preventDefault()
-              return _vm.saved($event)
+              return _vm.updated($event)
             },
             keydown: function($event) {
               return _vm.form.errors.clear($event.target.name)
@@ -37620,165 +37604,160 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", {}, [
-              _c("div", { staticClass: "my-4" }, [
-                _c(
-                  "label",
+            _c("div", { staticClass: "my-4" }, [
+              _c(
+                "label",
+                {
+                  class: { "text-red": _vm.form.errors.has("name") },
+                  attrs: { for: "name" }
+                },
+                [_vm._v("Name")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
                   {
-                    class: { "text-red": _vm.form.errors.has("name") },
-                    attrs: { for: "name" }
-                  },
-                  [_vm._v("Name")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.name,
-                      expression: "form.name"
-                    }
-                  ],
-                  staticClass:
-                    "leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none",
-                  class: { "border-red": _vm.form.errors.has("name") },
-                  attrs: { id: "name", name: "name", maxlength: "64" },
-                  domProps: { value: _vm.form.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "name", $event.target.value)
-                    }
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.name,
+                    expression: "form.name"
                   }
-                }),
-                _vm._v(" "),
-                _vm.form.errors.has("name")
-                  ? _c("div", { staticClass: "text-red" }, [
-                      _vm._v(_vm._s(_vm.form.errors.get("name")))
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "my-4" }, [
-                _c("label", { attrs: { for: "description" } }, [
-                  _vm._v("Description")
-                ]),
-                _vm._v(" "),
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.description,
-                      expression: "form.description"
+                ],
+                staticClass:
+                  "leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none",
+                class: { "border-red": _vm.form.errors.has("name") },
+                attrs: { id: "name", name: "name", maxlength: "64" },
+                domProps: { value: _vm.form.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  ],
-                  staticClass:
-                    "leading-loose tracking-wide shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none resize-none",
-                  attrs: {
-                    rows: "6",
-                    id: "description",
-                    name: "description",
-                    maxlength: "1023"
-                  },
-                  domProps: { value: _vm.form.description },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "description", $event.target.value)
-                    }
+                    _vm.$set(_vm.form, "name", $event.target.value)
                   }
-                })
-              ]),
+                }
+              }),
               _vm._v(" "),
-              _c("div", { staticClass: "mt-8 flex flex-row justify-center" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass:
-                      "w-64 flex flex-col items-center px-4 py-6 rounded-lg shadow tracking-wide uppercase border cursor-pointer",
-                    class: {
-                      "border-green bg-green text-white hover:bg-green-dark":
-                        _vm.videoUploaded && !_vm.form.errors.has("video"),
-                      "border-pink text-pink hover:bg-pink hover:text-white":
-                        !_vm.videoUploaded && !_vm.form.errors.has("video"),
-                      "border-red text-red hover:bg-red hover:text-white": _vm.form.errors.has(
-                        "video"
-                      )
-                    }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "w-8 h-8",
-                        attrs: {
-                          fill: "currentColor",
-                          xmlns: "http://www.w3.org/2000/svg",
-                          viewBox: "0 0 20 20"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "mt-2 text-base leading-normal" },
-                      [
-                        _vm._v(
-                          _vm._s(
-                            _vm.videoUploaded ? "MP4 Selected" : "Select an MP4"
-                          )
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      ref: "video",
-                      staticClass: "hidden",
-                      attrs: {
-                        name: "video",
-                        type: "file",
-                        accept: "video/mp4"
-                      },
-                      on: { change: _vm.videoChangeEvent }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _vm.form.errors.has("video")
-                ? _c("div", { staticClass: "text-red text-center mt-2" }, [
-                    _vm._v(
-                      _vm._s(_vm.form.errors.get("video")) +
-                        "\n                "
-                    )
+              _vm.form.errors.has("name")
+                ? _c("div", { staticClass: "text-red" }, [
+                    _vm._v(_vm._s(_vm.form.errors.get("name")))
                   ])
-                : _vm._e(),
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "my-4" }, [
+              _c("label", { attrs: { for: "description" } }, [
+                _vm._v("Description")
+              ]),
               _vm._v(" "),
-              _c("div", { staticClass: "text-center text-lg" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.filename) +
-                    "\n                "
-                )
-              ])
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.description,
+                    expression: "form.description"
+                  }
+                ],
+                staticClass:
+                  "leading-loose tracking-wide shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none resize-none",
+                attrs: {
+                  rows: "6",
+                  id: "description",
+                  name: "description",
+                  maxlength: "1023"
+                },
+                domProps: { value: _vm.form.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "description", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "mt-8 flex flex-row justify-center" }, [
+              _c(
+                "label",
+                {
+                  staticClass:
+                    "w-64 flex flex-col items-center px-4 py-6 rounded-lg shadow tracking-wide uppercase border cursor-pointer",
+                  class: {
+                    "border-green bg-green text-white hover:bg-green-dark":
+                      _vm.videoUploaded && !_vm.form.errors.has("video"),
+                    "border-pink text-pink hover:bg-pink hover:text-white":
+                      !_vm.videoUploaded && !_vm.form.errors.has("video"),
+                    "border-red text-red hover:bg-red hover:text-white": _vm.form.errors.has(
+                      "video"
+                    )
+                  }
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "w-8 h-8",
+                      attrs: {
+                        fill: "currentColor",
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "mt-2 text-base leading-normal" }, [
+                    _vm._v(
+                      _vm._s(
+                        _vm.videoUploaded ? "MP4 Selected" : "Select an MP4"
+                      )
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    ref: "video",
+                    staticClass: "hidden",
+                    attrs: { name: "video", type: "file", accept: "video/mp4" },
+                    on: { change: _vm.videoChangeEvent }
+                  })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _vm.form.errors.has("video")
+              ? _c("div", { staticClass: "text-red text-center mt-2" }, [
+                  _vm._v(
+                    _vm._s(_vm.form.errors.get("video")) + "\n            "
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-center text-lg" }, [
+              _vm._v(
+                "\n                " + _vm._s(_vm.filename) + "\n            "
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "flex flex-row justify-end" }, [
-              _vm._m(1),
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold",
+                  attrs: { href: "/video/" + _vm.video.id }
+                },
+                [_c("span", [_vm._v("Cancel")])]
+              ),
               _vm._v(" "),
               _c(
                 "button",
@@ -37793,7 +37772,7 @@ var render = function() {
                 },
                 [
                   _c("span", { staticClass: "text-white font-bold" }, [
-                    _vm._v("Create")
+                    _vm._v("Save")
                   ])
                 ]
               )
@@ -37817,20 +37796,6 @@ var staticRenderFns = [
         attrs: { href: "/video" }
       },
       [_c("span", [_vm._v("Back to Videos")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass:
-          "mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold",
-        attrs: { href: "/video" }
-      },
-      [_c("span", [_vm._v("Cancel")])]
     )
   }
 ]
