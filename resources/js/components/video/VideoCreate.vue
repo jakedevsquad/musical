@@ -51,7 +51,7 @@
                        class="mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold">
                         <span>Cancel</span>
                     </a>
-                    <button class="p-3 rounded shadow uppercase flex flex-row items-center justify-center"
+                    <button class="p-3 rounded shadow uppercase flex flex-row items-center justify-center focus:outline-none"
                             :class="{'bg-pink-lighter cursor-not-allowed' : form.errors.any(), 'bg-pink' : !form.errors.any()}"
                             :disabled="form.errors.any()">
                         <span class="text-white font-bold">Create</span>

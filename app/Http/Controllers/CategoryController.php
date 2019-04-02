@@ -26,12 +26,18 @@ class CategoryController extends Controller
 
     public function create()
     {
-        //
+        return view('category.create');
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $attributes = request()->validate([
+            'name'        => 'required|unique:categories|min:3|max:64',
+        ]);
+
+        Category::create($attributes);
+
+        return $this->ok('Category Created!');
     }
 
     public function show(Category $category)
@@ -44,7 +50,7 @@ class CategoryController extends Controller
         //
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Category $category)
     {
         //
     }

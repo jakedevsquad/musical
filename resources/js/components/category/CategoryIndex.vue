@@ -6,7 +6,7 @@
                     <input ref="filter" type="search" class="bg-white shadow-sm rounded p-3 focus:outline-none"
                            placeholder="Search by name..." @input="filter" v-model="filterText">
                 </div>
-                <button class="bg-blue hover:bg-blue-dark text-white shadow-sm font-bold py-2 px-4 rounded"
+                <button class="bg-blue hover:bg-blue-dark text-white shadow-sm font-bold py-2 px-4 rounded focus:outline-none"
                         @click="createCategory">
                     Add Category
                 </button>

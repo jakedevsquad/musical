@@ -48,7 +48,7 @@ export default class Form {
                     resolve(response.data);
                 })
                 .catch(error => {
-                    this.onFail(error.response.data);
+                    this.onFail(error.response);
 
                     reject(error.response.data);
                 });
@@ -56,12 +56,10 @@ export default class Form {
     }
 
     onSuccess() {
-        this.$emit('saved');
-        this.close();
         this.reset();
     }
 
-    onFail(errors) {
-        this.errors.record(errors);
+    onFail(response) {
+        this.errors.record(response);
     }
 }
