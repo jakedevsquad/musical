@@ -68,6 +68,8 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return $this->ok('Category Deleted!');
     }
 }
