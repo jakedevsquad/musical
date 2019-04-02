@@ -47,17 +47,17 @@ class VideoController extends Controller
         return $this->ok('Video Created!');
     }
 
-    public function show($id)
+    public function show(Video $video)
     {
         return view('video.show', [
-            'video' => Video::find($id)
+            'video' => Video::find($video->id)
         ]);
     }
 
-    public function edit($id)
+    public function edit(Video $video)
     {
         return view('video.edit', [
-            'video' => Video::find($id)
+            'video' => Video::find($video->id)
         ]);
     }
 

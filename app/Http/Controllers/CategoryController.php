@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -40,21 +41,29 @@ class CategoryController extends Controller
         return $this->ok('Category Created!');
     }
 
-    public function show($id)
+    public function show(Category $category)
     {
         return view('category.show', [
-            'category' => Category::find($id)
+            'category' => Category::find($category->id)
         ]);
     }
 
     public function edit(Category $category)
     {
-        //
+        return view('category.edit', [
+            'category' => Category::find($category->id)
+        ]);
     }
 
     public function update(Category $category)
     {
-        //
+        $attributes = request()->validate([
+            'name'        => ['required','min:3','max:64', Rule::unique('categories')->ignore($category->id)],
+        ]);
+
+        $category->update($attributes);
+
+        return $this->ok('Category Updated!');
     }
 
     public function destroy(Category $category)
