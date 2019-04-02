@@ -22,8 +22,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth', 'is.admin']], function () {
+    // Video
     Route::resource('video', 'VideoController')->except('update');
     Route::post('video/{video}', 'VideoController@update')->name('video.update');
+
+    // Category
+    Route::resource('category', 'CategoryController');
 });
 
 
