@@ -40,9 +40,11 @@ class CategoryController extends Controller
         return $this->ok('Category Created!');
     }
 
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        return view('category.show', [
+            'category' => Category::find($id)
+        ]);
     }
 
     public function edit(Category $category)
