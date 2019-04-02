@@ -86,8 +86,14 @@
         methods: {
             updated() {
                 this.addVideoToForm();
-                this.form.put('/video/' + this.video.id).then(() => {
-                    window.location = "/video";
+                this.form.post('/video/' + this.video.id).then(() => {
+                    this.$swal.fire(
+                        'Updated!',
+                        'Your video has been updated.',
+                        'success'
+                    ).then(() => {
+                        window.location = "/video";
+                    });
                 });
             },
 

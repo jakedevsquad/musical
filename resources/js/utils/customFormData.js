@@ -32,14 +32,6 @@ export default class Form {
         return this.submit('post', url);
     }
 
-    put(url) {
-        return this.submit('put', url);
-    }
-
-    delete(url) {
-        return this.submit('delete', url);
-    }
-
     submit(requestType, url) {
         return new Promise((resolve, reject) => {
             window.axios[requestType](url, this.data())

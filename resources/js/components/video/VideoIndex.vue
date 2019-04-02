@@ -41,8 +41,8 @@
                             <a :href="`/video/${video.id}/edit`">
                                 <span class="material-icons text-green hover:text-green-dark cursor-pointer hover:bg-grey-light rounded">edit</span>
                             </a>
-                            <button @click="destroy(video)">
-                                <span class="material-icons text-red hover:text-red-dark cursor-pointer hover:bg-grey-light rounded">delete</span>
+                            <button @click="destroy(video)" class="focus:outline-none">
+                                <span class="material-icons text-red hover:text-red-dark cursor-pointer hover:bg-grey-light rounded focus:outline-none">delete</span>
                             </button>
                         </td>
                     </tr>
@@ -78,7 +78,7 @@
 <script>
 
     export default {
-        props     : ['videos', 'defaultFilter'],
+        props: ['videos', 'defaultFilter'],
 
         data() {
             return {
@@ -100,8 +100,26 @@
             },
 
             destroy(video) {
-                window.axios.delete('/video/' + video.id).then(() => {
-                    window.location = "/video";
+                this.$swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        window.axios.delete('/video/' + video.id).then(() => {
+                            this.$swal.fire(
+                                'Deleted!',
+                                'Your video has been deleted.',
+                                'success'
+                            ).then(() => {
+                                window.location = "/video";
+                            });
+                        });
+                    }
                 });
             },
         }

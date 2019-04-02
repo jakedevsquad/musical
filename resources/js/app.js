@@ -10,7 +10,8 @@ require('./components/bootstrap');
 
 window.Vue = require('vue');
 window._ = require('lodash');
-
+import VueSweetalert2 from 'vue-sweetalert2';
+window.Vue.use(VueSweetalert2);
 
 /**
  * Import Axios Globally

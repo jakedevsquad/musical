@@ -21,7 +21,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware('auth', 'is.admin')->resource('video', 'VideoController');
+Route::group(['middleware' => ['auth', 'is.admin']], function () {
+    Route::resource('video', 'VideoController')->except('update');
+    Route::post('video/{video}', 'VideoController@update')->name('video.update');
+});
+
 
 Route::get('/playvideo/{video}', 'VideoController@play');
 
