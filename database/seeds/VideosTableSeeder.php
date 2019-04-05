@@ -7,6 +7,6 @@ class VideosTableSeeder extends Seeder
 {
     public function run()
     {
-        factory(Video::class, 99)->create();
+        factory(Video::class, 20)->create();
     }
 }

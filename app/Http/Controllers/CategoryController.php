@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
         return view('category.index', [
             'categories' => $videos,
-            'filter' => request('filter')
+            'filter'     => request('filter')
         ]);
     }
 
@@ -33,7 +33,7 @@ class CategoryController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'name'        => 'required|unique:categories|min:3|max:64',
+            'name' => 'required|unique:categories|min:3|max:64',
         ]);
 
         Category::create($attributes);
@@ -58,7 +58,7 @@ class CategoryController extends Controller
     public function update(Category $category)
     {
         $attributes = request()->validate([
-            'name'        => ['required','min:3','max:64', Rule::unique('categories')->ignore($category->id)],
+            'name' => ['required', 'min:3', 'max:64', Rule::unique('categories')->ignore($category->id)],
         ]);
 
         $category->update($attributes);
