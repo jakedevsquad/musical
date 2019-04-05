@@ -25,11 +25,15 @@ Route::group(['middleware' => ['auth', 'is.admin']], function () {
     // Video
     Route::resource('video', 'VideoController')->except('update');
     Route::post('video/{video}', 'VideoController@update')->name('video.update');
+    Route::get('/playvideo/{video}', 'VideoController@play');
 
     // Category
     Route::resource('category', 'CategoryController');
+
+    // Course
+    Route::resource('course', 'CourseController');
 });
 
 
-Route::get('/playvideo/{video}', 'VideoController@play');
+
 
