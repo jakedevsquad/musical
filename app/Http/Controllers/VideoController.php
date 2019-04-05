@@ -38,7 +38,7 @@ class VideoController extends Controller
             'description' => 'max:1023',
             'video'       => 'required|mimes:mp4|max:32000'
         ]);
-        $path = request()->file('video')->store('videos');
+        $path       = request()->file('video')->store('videos');
         unset($attributes['video']);
         $attributes = array_merge($attributes, ['url' => $path]);
 
@@ -50,7 +50,7 @@ class VideoController extends Controller
     public function show(Video $video)
     {
         return view('video.show', [
-            'video' => Video::find($video->id)
+            'video' => $video
         ]);
     }
 
@@ -75,7 +75,7 @@ class VideoController extends Controller
             $path = request()->file('video')->store('videos');
             unset($attributes['video']);
             $attributes = array_merge($attributes, ['url' => $path]);
-            $old_video = $video->url;
+            $old_video  = $video->url;
         } else {
             unset($attributes['video']);
             $attributes = array_merge($attributes, ['url' => request('video')]);
@@ -105,5 +105,10 @@ class VideoController extends Controller
         $response     = Response::make($fileContents, 200);
         $response->header('Content-Type', "video/mp4");
         return $response;
+    }
+
+    public function list()
+    {
+        return Video::all();
     }
 }

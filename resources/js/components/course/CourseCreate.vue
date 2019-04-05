@@ -1,14 +1,14 @@
 <template>
     <div class="flex flex-row justify-around ml-32 mr-64">
-        <a href="/category"
+        <a href="/course"
            class="text-white no-underline font-bold bg-pink h-12 mr-12 rounded shadow w-1/5 uppercase flex flex-row items-center justify-center">
-            <span>Back to Categories</span>
+            <span>Back to Courses</span>
         </a>
         <form @submit.prevent="saved" @keydown="form.errors.clear($event.target.name)"
               class="flex flex-row justify-center w-full">
             <div class="border px-8 py-4 rounded shadow w-full">
                 <div class="text-xl mb-8">
-                    {{ this.form.name ? this.form.name : "New Category" }}
+                    {{ this.form.name ? this.form.name : "New Course" }}
                 </div>
                 <div class="my-4">
                     <label for="name" :class="{'text-red': form.errors.has('name')}">Name</label>
@@ -17,8 +17,24 @@
                            :class="{'border-red': form.errors.has('name')}">
                     <div class="text-red" v-if="form.errors.has('name')">{{ form.errors.get('name') }}</div>
                 </div>
+                <div class="my-4">
+                    <label for="category" :class="{'text-red': form.errors.has('category_id')}">Category</label>
+                    <div class="relative" :class="{'border-red': form.errors.has('category_id')}">
+                        <select v-model="form.category_id" @change="form.errors.clear('category_id')"
+                                class="block appearance-none w-full bg-white border shadow-sm text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none"
+                                name="category" id="category" :class="{'border-red': form.errors.has('category_id')}">
+                            <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                        </select>
+                        <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-red" v-if="form.errors.has('category_id')">{{ form.errors.get('category_id') }}</div>
+                </div>
                 <div class="flex flex-row justify-end">
-                    <a href="/category"
+                    <a href="/course"
                        class="mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold">
                         <span>Cancel</span>
                     </a>
@@ -42,22 +58,29 @@
 
         data() {
             return {
-                filename     : '',
-                form         : new Form({
-                    name       : '',
+                form      : new Form({
+                    name    : '',
+                    category_id: '',
                 }),
+                categories: '',
             }
+        },
+
+        mounted() {
+            window.axios.get('/category-list').then((response) => {
+                this.categories = response.data;
+            });
         },
 
         methods: {
             saved() {
-                this.form.post('/category').then(() => {
+                this.form.post('/course').then(() => {
                     this.$swal.fire(
                         'Created!',
-                        'Your category has been created.',
+                        'Your course has been created.',
                         'success'
                     ).then(() => {
-                        window.location = "/category";
+                        window.location = "/course";
                     });
                 });
             },

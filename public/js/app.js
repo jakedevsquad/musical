@@ -1812,8 +1812,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     saved: function saved() {
+      var _this = this;
+
       this.form.post('/category').then(function () {
-        window.location = "/category";
+        _this.$swal.fire('Created!', 'Your category has been created.', 'success').then(function () {
+          window.location = "/category";
+        });
       });
     }
   }
@@ -2076,6 +2080,101 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/course/CourseCreate.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/course/CourseCreate.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/form */ "./resources/js/utils/form.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      form: new _utils_form__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        name: '',
+        category_id: ''
+      }),
+      categories: ''
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    window.axios.get('/category-list').then(function (response) {
+      _this.categories = response.data;
+    });
+  },
+  methods: {
+    saved: function saved() {
+      var _this2 = this;
+
+      this.form.post('/course').then(function () {
+        _this2.$swal.fire('Created!', 'Your course has been created.', 'success').then(function () {
+          window.location = "/course";
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/course/CourseIndex.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/course/CourseIndex.vue?vue&type=script&lang=js& ***!
@@ -2186,6 +2285,150 @@ __webpack_require__.r(__webpack_exports__);
         if (result.value) {
           window.axios.delete('/course/' + course.id).then(function () {
             _this.$swal.fire('Deleted!', 'Your course has been deleted.', 'success').then(function () {
+              window.location = "/course";
+            });
+          });
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/course/CourseShow.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/course/CourseShow.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/form */ "./resources/js/utils/form.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['course'],
+  data: function data() {
+    return {
+      videos: '',
+      showLessonForm: false,
+      form: new _utils_form__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        name: '',
+        description: '',
+        videos: ''
+      })
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    window.axios.get('/video-list').then(function (response) {
+      _this.videos = response.data;
+    });
+  },
+  methods: {
+    destroy: function destroy() {
+      var _this2 = this;
+
+      this.$swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          window.axios.delete('/course/' + _this2.course.id).then(function () {
+            _this2.$swal.fire('Deleted!', 'Your course has been deleted.', 'success').then(function () {
               window.location = "/course";
             });
           });
@@ -38999,7 +39242,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "flex flex-row justify-center w-full" }, [
         _c("div", { staticClass: "border px-8 py-4 rounded shadow w-full" }, [
-          _c("div", { staticClass: "text-3xl text-xl" }, [
+          _c("div", { staticClass: "text-3xl" }, [
             _vm._v(
               "\n                " +
                 _vm._s(_vm.category.name) +
@@ -39046,6 +39289,261 @@ var staticRenderFns = [
         attrs: { href: "/category" }
       },
       [_c("span", [_vm._v("Back to Categories")])]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/course/CourseCreate.vue?vue&type=template&id=94f841e0&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/course/CourseCreate.vue?vue&type=template&id=94f841e0& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "flex flex-row justify-around ml-32 mr-64" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "flex flex-row justify-center w-full",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.saved($event)
+            },
+            keydown: function($event) {
+              return _vm.form.errors.clear($event.target.name)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "border px-8 py-4 rounded shadow w-full" }, [
+            _c("div", { staticClass: "text-xl mb-8" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(this.form.name ? this.form.name : "New Course") +
+                  "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "my-4" }, [
+              _c(
+                "label",
+                {
+                  class: { "text-red": _vm.form.errors.has("name") },
+                  attrs: { for: "name" }
+                },
+                [_vm._v("Name")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.name,
+                    expression: "form.name"
+                  }
+                ],
+                staticClass:
+                  "leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none",
+                class: { "border-red": _vm.form.errors.has("name") },
+                attrs: { id: "name", name: "name", maxlength: "64" },
+                domProps: { value: _vm.form.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "name", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.form.errors.has("name")
+                ? _c("div", { staticClass: "text-red" }, [
+                    _vm._v(_vm._s(_vm.form.errors.get("name")))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "my-4" }, [
+              _c(
+                "label",
+                {
+                  class: { "text-red": _vm.form.errors.has("category_id") },
+                  attrs: { for: "category" }
+                },
+                [_vm._v("Category")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "relative",
+                  class: { "border-red": _vm.form.errors.has("category_id") }
+                },
+                [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.category_id,
+                          expression: "form.category_id"
+                        }
+                      ],
+                      staticClass:
+                        "block appearance-none w-full bg-white border shadow-sm text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none",
+                      class: {
+                        "border-red": _vm.form.errors.has("category_id")
+                      },
+                      attrs: { name: "category", id: "category" },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "category_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function($event) {
+                            return _vm.form.errors.clear("category_id")
+                          }
+                        ]
+                      }
+                    },
+                    _vm._l(_vm.categories, function(category) {
+                      return _c(
+                        "option",
+                        { domProps: { value: category.id } },
+                        [_vm._v(_vm._s(category.name))]
+                      )
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "fill-current h-4 w-4",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.form.errors.has("category_id")
+                ? _c("div", { staticClass: "text-red" }, [
+                    _vm._v(_vm._s(_vm.form.errors.get("category_id")))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex flex-row justify-end" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "p-3 rounded shadow uppercase flex flex-row items-center justify-center focus:outline-none",
+                  class: {
+                    "bg-pink-lighter cursor-not-allowed": _vm.form.errors.any(),
+                    "bg-pink": !_vm.form.errors.any()
+                  },
+                  attrs: { disabled: _vm.form.errors.any() }
+                },
+                [
+                  _c("span", { staticClass: "text-white font-bold" }, [
+                    _vm._v("Create")
+                  ])
+                ]
+              )
+            ])
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass:
+          "text-white no-underline font-bold bg-pink h-12 mr-12 rounded shadow w-1/5 uppercase flex flex-row items-center justify-center",
+        attrs: { href: "/course" }
+      },
+      [_c("span", [_vm._v("Back to Courses")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass:
+          "mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold",
+        attrs: { href: "/course" }
+      },
+      [_c("span", [_vm._v("Cancel")])]
     )
   }
 ]
@@ -39288,6 +39786,264 @@ var staticRenderFns = [
         )
       ])
     ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/course/CourseShow.vue?vue&type=template&id=e70d40de&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/course/CourseShow.vue?vue&type=template&id=e70d40de& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "flex flex-row justify-around ml-32 mr-64" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex flex-row justify-center w-full" }, [
+        _c("div", { staticClass: "border px-8 py-4 rounded shadow w-full" }, [
+          _c("div", { staticClass: "text-3xl" }, [
+            _vm._v(
+              "\n                " + _vm._s(_vm.course.name) + "\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-xl" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.course.category.name) +
+                "\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-green p-3 rounded shadow uppercase flex flex-row items-center justify-center text-white font-bold focus:outline-none",
+              on: {
+                click: function($event) {
+                  _vm.showLessonForm = true
+                }
+              }
+            },
+            [_c("span", [_vm._v("Add Lesson")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.showLessonForm,
+                  expression: "showLessonForm"
+                }
+              ]
+            },
+            [
+              _c(
+                "form",
+                {
+                  staticClass: "flex flex-row justify-center w-full",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.updated($event)
+                    },
+                    keydown: function($event) {
+                      return _vm.form.errors.clear($event.target.name)
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "border px-8 py-4 rounded shadow w-full" },
+                    [
+                      _c("div", { staticClass: "text-xl mb-8" }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(
+                              this.form.name ? this.form.name : "New Video"
+                            ) +
+                            "\n                        "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "my-4" }, [
+                        _c(
+                          "label",
+                          {
+                            class: { "text-red": _vm.form.errors.has("name") },
+                            attrs: { for: "name" }
+                          },
+                          [_vm._v("Name")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.name,
+                              expression: "form.name"
+                            }
+                          ],
+                          staticClass:
+                            "leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none",
+                          class: { "border-red": _vm.form.errors.has("name") },
+                          attrs: { id: "name", name: "name", maxlength: "64" },
+                          domProps: { value: _vm.form.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "name", $event.target.value)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.form.errors.has("name")
+                          ? _c("div", { staticClass: "text-red" }, [
+                              _vm._v(_vm._s(_vm.form.errors.get("name")))
+                            ])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "my-4" }, [
+                        _c("label", { attrs: { for: "description" } }, [
+                          _vm._v("Description")
+                        ]),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.description,
+                              expression: "form.description"
+                            }
+                          ],
+                          staticClass:
+                            "leading-loose tracking-wide shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none resize-none",
+                          attrs: {
+                            rows: "6",
+                            id: "description",
+                            name: "description",
+                            maxlength: "1023"
+                          },
+                          domProps: { value: _vm.form.description },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "description",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex flex-row justify-end" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold",
+                            attrs: { href: (_vm.showLessonForm = false) }
+                          },
+                          [_c("span", [_vm._v("Cancel")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "p-3 rounded shadow uppercase flex flex-row items-center justify-center focus:outline-none",
+                            class: {
+                              "bg-pink-lighter cursor-not-allowed": _vm.form.errors.any(),
+                              "bg-pink": !_vm.form.errors.any()
+                            },
+                            attrs: { disabled: _vm.form.errors.any() }
+                          },
+                          [
+                            _c(
+                              "span",
+                              { staticClass: "text-white font-bold" },
+                              [_vm._v("Save")]
+                            )
+                          ]
+                        )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex flex-row justify-end" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "mr-4 bg-red p-3 rounded shadow uppercase flex flex-row items-center justify-center text-white font-bold focus:outline-none",
+                on: { click: _vm.destroy }
+              },
+              [_c("span", [_vm._v("Delete")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass:
+                  "mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold",
+                attrs: { href: "/course/" + _vm.course.id + "/edit" }
+              },
+              [_c("span", [_vm._v("Edit")])]
+            )
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass:
+          "text-white no-underline font-bold bg-pink h-12 mr-12 rounded shadow w-1/5 uppercase flex flex-row items-center justify-center",
+        attrs: { href: "/course" }
+      },
+      [_c("span", [_vm._v("Back to Courses")])]
+    )
   }
 ]
 render._withStripped = true
@@ -40348,7 +41104,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "flex flex-row justify-center w-full" }, [
         _c("div", { staticClass: "border px-8 py-4 rounded shadow w-full" }, [
-          _c("div", { staticClass: "text-3xl text-xl" }, [
+          _c("div", { staticClass: "text-3xl" }, [
             _vm._v(
               "\n                " + _vm._s(_vm.video.name) + "\n            "
             )
@@ -52709,7 +53465,9 @@ var map = {
 	"./category/CategoryEdit.vue": "./resources/js/components/category/CategoryEdit.vue",
 	"./category/CategoryIndex.vue": "./resources/js/components/category/CategoryIndex.vue",
 	"./category/CategoryShow.vue": "./resources/js/components/category/CategoryShow.vue",
+	"./course/CourseCreate.vue": "./resources/js/components/course/CourseCreate.vue",
 	"./course/CourseIndex.vue": "./resources/js/components/course/CourseIndex.vue",
+	"./course/CourseShow.vue": "./resources/js/components/course/CourseShow.vue",
 	"./video/VideoCreate.vue": "./resources/js/components/video/VideoCreate.vue",
 	"./video/VideoEdit.vue": "./resources/js/components/video/VideoEdit.vue",
 	"./video/VideoForm.vue": "./resources/js/components/video/VideoForm.vue",
@@ -53043,6 +53801,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/course/CourseCreate.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/course/CourseCreate.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CourseCreate_vue_vue_type_template_id_94f841e0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CourseCreate.vue?vue&type=template&id=94f841e0& */ "./resources/js/components/course/CourseCreate.vue?vue&type=template&id=94f841e0&");
+/* harmony import */ var _CourseCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CourseCreate.vue?vue&type=script&lang=js& */ "./resources/js/components/course/CourseCreate.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CourseCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CourseCreate_vue_vue_type_template_id_94f841e0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CourseCreate_vue_vue_type_template_id_94f841e0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/course/CourseCreate.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/course/CourseCreate.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/course/CourseCreate.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CourseCreate.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/course/CourseCreate.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/course/CourseCreate.vue?vue&type=template&id=94f841e0&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/course/CourseCreate.vue?vue&type=template&id=94f841e0& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseCreate_vue_vue_type_template_id_94f841e0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CourseCreate.vue?vue&type=template&id=94f841e0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/course/CourseCreate.vue?vue&type=template&id=94f841e0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseCreate_vue_vue_type_template_id_94f841e0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseCreate_vue_vue_type_template_id_94f841e0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/course/CourseIndex.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/course/CourseIndex.vue ***!
@@ -53107,6 +53934,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseIndex_vue_vue_type_template_id_46a3996e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseIndex_vue_vue_type_template_id_46a3996e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/course/CourseShow.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/course/CourseShow.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CourseShow_vue_vue_type_template_id_e70d40de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CourseShow.vue?vue&type=template&id=e70d40de& */ "./resources/js/components/course/CourseShow.vue?vue&type=template&id=e70d40de&");
+/* harmony import */ var _CourseShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CourseShow.vue?vue&type=script&lang=js& */ "./resources/js/components/course/CourseShow.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CourseShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CourseShow_vue_vue_type_template_id_e70d40de___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CourseShow_vue_vue_type_template_id_e70d40de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/course/CourseShow.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/course/CourseShow.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/course/CourseShow.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CourseShow.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/course/CourseShow.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/course/CourseShow.vue?vue&type=template&id=e70d40de&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/course/CourseShow.vue?vue&type=template&id=e70d40de& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseShow_vue_vue_type_template_id_e70d40de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CourseShow.vue?vue&type=template&id=e70d40de& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/course/CourseShow.vue?vue&type=template&id=e70d40de&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseShow_vue_vue_type_template_id_e70d40de___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseShow_vue_vue_type_template_id_e70d40de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

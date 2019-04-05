@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property Category $category
  */
 class Course extends Model
 {

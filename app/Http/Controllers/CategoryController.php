@@ -14,13 +14,13 @@ class CategoryController extends Controller
         if ($filter) {
             $filter = '%' . $filter . '%';
             $query  = Category::query()->where('name', 'like', $filter)->orderBy('name');
-            $videos = $query->paginate(10);
+            $categories = $query->paginate(10);
         } else {
-            $videos = Category::orderBy('name')->paginate(10);
+            $categories = Category::orderBy('name')->paginate(10);
         }
 
         return view('category.index', [
-            'categories' => $videos,
+            'categories' => $categories,
             'filter'     => request('filter')
         ]);
     }
@@ -51,7 +51,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         return view('category.edit', [
-            'category' => Category::find($category->id)
+            'category' => $category
         ]);
     }
 
@@ -71,5 +71,10 @@ class CategoryController extends Controller
         $category->delete();
 
         return $this->ok('Category Deleted!');
+    }
+
+    public function list()
+    {
+        return Category::all();
     }
 }

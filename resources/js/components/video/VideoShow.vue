@@ -6,7 +6,7 @@
         </a>
         <div class="flex flex-row justify-center w-full">
             <div class="border px-8 py-4 rounded shadow w-full">
-                <div class="text-3xl text-xl">
+                <div class="text-3xl">
                     {{ video.name }}
                 </div>
                 <div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Course;
+use App\Http\Resources\CourseResource;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -13,30 +15,39 @@ class CourseController extends Controller
         if ($filter) {
             $filter = '%' . $filter . '%';
             $query  = Course::query()->where('name', 'like', $filter)->orderBy('name');
-            $videos = $query->paginate(10);
+            $courses = $query->paginate(10);
         } else {
-            $videos = Course::orderBy('name')->paginate(10);
+            $courses = Course::orderBy('name')->paginate(10);
         }
 
         return view('course.index', [
-            'courses' => $videos,
-            'filter'     => request('filter')
+            'courses' => $courses,
+            'filter'  => request('filter')
         ]);
     }
 
     public function create()
     {
-        //
+        return view('course.create');
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $attributes = request()->validate([
+            'name'        => 'required|unique:courses|min:3|max:64',
+            'category_id' => 'required|exists:categories,id'
+        ]);
+
+        Course::create($attributes);
+
+        return $this->ok('Course Created!');
     }
 
     public function show(Course $course)
     {
-        //
+        return view('course.show', [
+            'course'   => CourseResource::make($course)->jsonSerialize(),
+        ]);
     }
 
     public function edit(Course $course)
@@ -44,7 +55,7 @@ class CourseController extends Controller
         //
     }
 
-    public function update(Request $request, Course $course)
+    public function update(Course $course)
     {
         //
     }
