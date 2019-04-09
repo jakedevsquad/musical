@@ -13,8 +13,8 @@ class CourseController extends Controller
     {
         $filter = request('filter');
         if ($filter) {
-            $filter = '%' . $filter . '%';
-            $query  = Course::query()->where('name', 'like', $filter)->orderBy('name');
+            $filter  = '%' . $filter . '%';
+            $query   = Course::query()->where('name', 'like', $filter)->orderBy('name');
             $courses = $query->paginate(10);
         } else {
             $courses = Course::orderBy('name')->paginate(10);
@@ -46,7 +46,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         return view('course.show', [
-            'course'   => CourseResource::make($course)->jsonSerialize(),
+            'course' => CourseResource::make($course)->jsonSerialize(),
         ]);
     }
 
@@ -63,5 +63,10 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         //
+    }
+
+    public function lessonList(Course $course)
+    {
+        return $course->lessons;
     }
 }

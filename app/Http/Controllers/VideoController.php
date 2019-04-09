@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
+use App\Lesson;
 use App\Video;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
@@ -107,8 +109,14 @@ class VideoController extends Controller
         return $response;
     }
 
-    public function list()
+    public function list(Course $course)
     {
-        return Video::all();
+        $existingVideos = collect([]);
+        /** @var Lesson $lesson */
+        foreach ($course->lessons as $lesson) {
+            $existingVideos = $existingVideos->merge($lesson->videos);
+        }
+
+        return Video::all()->diff($existingVideos);
     }
 }

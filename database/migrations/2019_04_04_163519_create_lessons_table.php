@@ -12,7 +12,12 @@ class CreateLessonsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('description')->nullable();
+            $table->unsignedBigInteger('course_id');
             $table->timestamps();
+
+            $table->foreign('course_id')
+                ->references('id')
+                ->on('courses');
         });
     }
 

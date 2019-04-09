@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLessonsVideosTable extends Migration
+class CreateLessonVideoTable extends Migration
 {
     public function up()
     {
-        Schema::create('lessons_videos', function (Blueprint $table) {
+        Schema::create('lesson_video', function (Blueprint $table) {
             $table->unsignedBigInteger('lesson_id');
             $table->unsignedBigInteger('video_id');
 

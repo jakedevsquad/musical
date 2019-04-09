@@ -13,60 +13,57 @@
                     {{ course.category.name }}
                 </div>
 
-                <button @click="showLessonForm = true"
+                <button @click="toggleLessonForm"
                         class="bg-green p-3 rounded shadow uppercase flex flex-row items-center justify-center text-white font-bold focus:outline-none">
                     <span>Add Lesson</span>
                 </button>
-                <div v-show="showLessonForm">
 
-                    <form @submit.prevent="updated" @keydown="form.errors.clear($event.target.name)"
-                          class="flex flex-row justify-center w-full">
-                        <div class="border px-8 py-4 rounded shadow w-full">
-                            <div class="text-xl mb-8">
-                                {{ this.form.name ? this.form.name : "New Video" }}
-                            </div>
-                            <div class="my-4">
-                                <label for="name" :class="{'text-red': form.errors.has('name')}">Name</label>
-                                <input v-model="form.name" id="name" name="name" maxlength="64"
-                                       class="leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none"
-                                       :class="{'border-red': form.errors.has('name')}">
-                                <div class="text-red" v-if="form.errors.has('name')">{{ form.errors.get('name') }}</div>
-                            </div>
-                            <div class="my-4">
-                                <label for="description">Description</label>
-                                <textarea rows="6" v-model="form.description" id="description" name="description"
-                                          maxlength="1023"
-                                          class="leading-loose tracking-wide shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none resize-none"></textarea>
-                            </div>
+                <div v-if="newLesson">
+                    <form @submit.prevent="addLesson" @keydown="lessonForm.errors.clear($event.target.name)">
+                        <div class="flex flex-row justify-center w-full">
+                            <div class="border px-8 py-4 rounded shadow w-full">
+                                <div class="text-xl mb-8">
+                                    {{ lessonForm.name ? lessonForm.name : "New Lesson" }}
+                                </div>
+                                <div class="my-4">
+                                    <label for="name" :class="{'text-red': lessonForm.errors.has('name')}">Name</label>
+                                    <input v-model="lessonForm.name" id="name" name="name" maxlength="64"
+                                           class="leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none"
+                                           :class="{'border-red': lessonForm.errors.has('name')}">
+                                    <div class="text-red" v-if="lessonForm.errors.has('name')">{{ lessonForm.errors.get('name') }}</div>
+                                </div>
+                                <div class="my-4">
+                                    <label for="description">Description</label>
+                                    <textarea rows="6" v-model="lessonForm.description" id="description" name="description"
+                                              maxlength="1023"
+                                              class="leading-loose tracking-wide shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none resize-none"></textarea>
+                                </div>
+                                <div class="my-4">
+                                    <label>Videos</label>
+                                    <multiselect class="leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none"
+                                            v-model="videosSelected"
+                                            :options="videoOptions"
+                                            :multiple="true"
+                                            placeholder="Pick some videos"
+                                            label="name"
+                                    >
+                                    </multiselect>
+                                </div>
 
-                            <div class="flex flex-row justify-end">
-                                <button :href="showLessonForm = false"
-                                        class="mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold">
-                                    <span>Cancel</span>
-                                </button>
-                                <button class="p-3 rounded shadow uppercase flex flex-row items-center justify-center focus:outline-none"
-                                        :class="{'bg-pink-lighter cursor-not-allowed' : form.errors.any(), 'bg-pink' : !form.errors.any()}"
-                                        :disabled="form.errors.any()">
-                                    <span class="text-white font-bold">Save</span>
-                                </button>
+                                <div class="flex flex-row justify-end">
+                                    <button :href="showLessonForm = false"
+                                            class="mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold">
+                                        <span>Cancel</span>
+                                    </button>
+                                    <button class="p-3 rounded shadow uppercase flex flex-row items-center justify-center focus:outline-none"
+                                            :class="{'bg-pink-lighter cursor-not-allowed' : lessonForm.errors.any(), 'bg-pink' : !lessonForm.errors.any()}"
+                                            :disabled="lessonForm.errors.any()">
+                                        <span class="text-white font-bold">Save</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>
-
-                    <!--<div>-->
-                    <!--<label for="name">Lesson Name</label>-->
-                    <!--<input type="text" name="name" id="name">-->
-                    <!--</div>-->
-                    <!--<div>-->
-                    <!--<label for="description">Lesson Description</label>-->
-                    <!--<input type="text" name="description" id="description">-->
-                    <!--</div>-->
-                    <!--<div>-->
-                    <!--<label for="videos">Lesson Videos</label>-->
-                    <!--<select name="videos" id="videos">-->
-                    <!--<option v-for="video in videos" :value="video.id">{{ video.name }}</option>-->
-                    <!--</select>-->
-                    <!--</div>-->
                 </div>
 
                 <div class="flex flex-row justify-end">
@@ -87,15 +84,19 @@
 <script>
 
     import Form from "../../utils/form";
+    import Multiselect from 'vue-multiselect'
 
     export default {
+        components: { Multiselect },
         props: ['course'],
 
         data() {
             return {
-                videos        : '',
-                showLessonForm: false,
-                form          : new Form({
+                lessons: [],
+                newLesson: false,
+                videosSelected: [],
+                videoOptions: [],
+                lessonForm          : new Form({
                     name       : '',
                     description: '',
                     videos     : '',
@@ -104,8 +105,12 @@
         },
 
         mounted() {
-            window.axios.get('/video-list').then((response) => {
-                this.videos = response.data;
+            window.axios.get('/video-list/' + this.course.id).then((response) => {
+                this.videoOptions = response.data;
+            });
+
+            window.axios.get('/lesson-list/' + this.course.id).then((response) => {
+                this.lessons = response.data;
             });
         },
 
@@ -131,6 +136,17 @@
                             });
                         });
                     }
+                });
+            },
+
+            toggleLessonForm() {
+                this.newLesson = !this.newLesson;
+            },
+
+            addLesson() {
+                this.form.post('/lesson').then((response) => {
+                    this.lessons.push(response.data);
+                    this.form.reset();
                 });
             }
         }

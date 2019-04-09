@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Category $category
+ * @property Lesson $lessons
  */
 class Course extends Model
 {

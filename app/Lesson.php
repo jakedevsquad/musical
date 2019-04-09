@@ -4,6 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $description
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Course $course
+ * @property Video $videos
+ */
 class Lesson extends Model
 {
     protected $guarded = [];
