@@ -13,11 +13,15 @@ class CreateLessonsTable extends Migration
             $table->string('name')->unique();
             $table->string('description')->nullable();
             $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('video_id');
             $table->timestamps();
 
             $table->foreign('course_id')
                 ->references('id')
                 ->on('courses');
+            $table->foreign('video_id')
+                ->references('id')
+                ->on('videos');
         });
     }
 

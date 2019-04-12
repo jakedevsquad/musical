@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Course;
 use App\Http\Resources\CourseResource;
+use App\Lesson;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -68,5 +69,24 @@ class CourseController extends Controller
     public function lessonList(Course $course)
     {
         return $course->lessons;
+    }
+
+    public function destroyLesson(Lesson $lesson)
+    {
+        $lesson->delete();
+
+        return $this->ok('Lesson Deleted!');
+    }
+
+    public function createLesson(Course $course)
+    {
+        return view('lesson.create', [
+            'course' => $course
+        ]);
+    }
+
+    public function addLesson()
+    {
+        return $this->ok('Lesson Created!');
     }
 }

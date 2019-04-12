@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Course $course
- * @property Video $videos
+ * @property Video $video
  */
 class Lesson extends Model
 {
@@ -22,8 +22,8 @@ class Lesson extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function videos()
+    public function video()
     {
-        return $this->belongsToMany(Video::class);
+        return $this->belongsTo(Video::class);
     }
 }
