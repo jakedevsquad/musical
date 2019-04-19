@@ -2,84 +2,67 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
+use App\Http\Resources\LessonResource;
 use App\Lesson;
+use App\Rules\DuplicateVideo;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Course $course)
     {
-        //
+        return view('lesson.create', [
+            'course' => $course
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Course $course)
     {
-        //
+        $attributes = request()->validate([
+            'name'        => 'required|unique:lessons|min:3|max:64',
+            'description' => 'max:1023',
+            'video_id'       => ['required', 'exists:videos,id', new DuplicateVideo($course)]
+        ]);
+        $attributes['course_id'] = $course->id;
+
+        Lesson::create($attributes);
+
+        return $this->ok('Lesson Created!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
     public function show(Lesson $lesson)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Lesson $lesson)
     {
-        //
+        return view('lesson.edit', [
+            'lesson' => $lesson
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Lesson $lesson)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Lesson $lesson)
     {
-        //
+        $lesson->delete();
+
+        return $this->ok('Lesson Deleted!');
+    }
+
+
+    public function lessonList(Course $course)
+    {
+        return LessonResource::collection($course->lessons)->jsonSerialize();
     }
 }

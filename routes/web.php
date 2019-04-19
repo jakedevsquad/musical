@@ -34,10 +34,12 @@ Route::group(['middleware' => ['auth', 'is.admin']], function () {
 
     // Course
     Route::resource('course', 'CourseController');
-    Route::get('lesson-list/{course}', 'CourseController@lessonList');
-    Route::delete('lesson/{lesson}', 'CourseController@destroyLesson');
-    Route::get('course/{course}/create-lesson', 'CourseController@createLesson');
-    Route::post('course/{course}/lesson', 'CourseController@addLesson');
+
+    //Lesson
+    Route::resource('lesson', 'LessonController')->except(['create', 'store']);
+    Route::get('course/{course}/create-lesson', 'LessonController@create');
+    Route::post('course/{course}/lesson', 'LessonController@store');
+    Route::get('lesson-list/{course}', 'LessonController@lessonList');
 });
 
 

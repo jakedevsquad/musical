@@ -38,11 +38,14 @@ class VideoController extends Controller
         $attributes = request()->validate([
             'name'        => 'required|unique:videos|min:3|max:64',
             'description' => 'max:1023',
-            'video'       => 'required|mimes:mp4|max:32000'
+            'video'       => 'required|mimes:mp4|max:32000',
+            'image'       => 'required|mimes:png,jpeg'
         ]);
-        $path       = request()->file('video')->store('videos');
+        $video       = request()->file('video')->store('public/videos');
+        $image       = request()->file('image')->store('public/images');
         unset($attributes['video']);
-        $attributes = array_merge($attributes, ['url' => $path]);
+        unset($attributes['image']);
+        $attributes = array_merge($attributes, ['url' => $video], ['photo_url' => $image]);
 
         Video::create($attributes);
 
@@ -68,13 +71,15 @@ class VideoController extends Controller
         $attributes = request()->validate([
             'name'        => ['required', 'min:3', 'max:64', Rule::unique('videos')->ignore($video->id)],
             'description' => 'max:1023',
-            'video'       => is_string(request('video')) ? 'required|regex:/.mp4$/' : 'required|mimes:mp4|max:32000'
+            'video'       => is_string(request('video')) ? 'required|regex:/.mp4$/' : 'required|mimes:mp4|max:32000',
+            'image'       => is_string(request('image')) ? ['required', 'regex:/(.png$|.jpeg$)/'] : 'required|mimes:png,jpeg',
         ]);
 
         $old_video = null;
+        $old_image = null;
 
         if (!is_string(request('video'))) {
-            $path = request()->file('video')->store('videos');
+            $path = request()->file('video')->store('public/videos');
             unset($attributes['video']);
             $attributes = array_merge($attributes, ['url' => $path]);
             $old_video  = $video->url;
@@ -83,10 +88,24 @@ class VideoController extends Controller
             $attributes = array_merge($attributes, ['url' => request('video')]);
         }
 
+        if (!is_string(request('image'))) {
+            $path = request()->file('image')->store('public/images');
+            unset($attributes['image']);
+            $attributes = array_merge($attributes, ['photo_url' => $path]);
+            $old_video  = $video->photo_url;
+        } else {
+            unset($attributes['image']);
+            $attributes = array_merge($attributes, ['photo_url' => request('image')]);
+        }
+
         $video->update($attributes);
 
         if ($old_video) {
             Storage::delete($old_video);
+        }
+
+        if ($old_image) {
+            Storage::delete($old_image);
         }
 
         return $this->ok('Video Updated!');

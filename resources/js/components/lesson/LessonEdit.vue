@@ -60,7 +60,7 @@
     import Form from "../../utils/form";
 
     export default {
-        props: ['course'],
+        props: ['lesson'],
 
         data() {
             return {
@@ -80,9 +80,9 @@
         },
 
         methods: {
-            addLesson() {
-                this.form.post('/course/' + this.course.id + '/lesson').then(() => {
-                    window.location = '/course/' + this.course.id;
+            updateLesson() {
+                this.form.post('/lesson/' + this.lesson.id).then((request) => {
+                    window.location = '/course/' + request.data.course_id;
                 });
             },
         }

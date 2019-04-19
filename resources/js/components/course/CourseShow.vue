@@ -82,9 +82,7 @@
                          :class="{'border-b' : index !== lessons.length - 1}">
                         <div class="flex flex-row justify-start p-4">
                             <div class="w-1/4">
-                                <!--<video width="320" class="outline-none">-->
-                                    <!--<source :src="`/playvideo/${lesson.video_id}`" type="video/mp4">-->
-                                <!--</video>-->
+                                <img :src="`/storage/${lesson.video_photo_url}`" width="320">
                             </div>
                             <div class="ml-4 w-full">
                                 <div class="text-lg">
@@ -95,6 +93,10 @@
                                 </div>
                             </div>
                             <div class="w-1/4">
+                                <button @click="editLesson(lesson)"
+                                        class="bg-blue p-3 rounded shadow uppercase flex flex-row items-center justify-center text-white font-bold focus:outline-none w-full mb-6">
+                                    Edit
+                                </button>
                                 <button @click="deleteLesson(lesson, index)"
                                         class="bg-red p-3 rounded shadow uppercase flex flex-row items-center justify-center text-white font-bold focus:outline-none w-full">
                                     delete
@@ -174,6 +176,10 @@
                 });
             },
 
+            editLesson(lesson) {
+                window.location = '/lesson/' + lesson.id;
+            },
+
             deleteLesson(lesson, index) {
                 this.$swal.fire({
                     title             : 'Are you sure?',
@@ -188,7 +194,7 @@
                         window.axios.delete('/lesson/' + lesson.id).then(() => {
                             this.$swal.fire(
                                 'Deleted!',
-                                'Your category has been deleted.',
+                                'Your lesson has been deleted.',
                                 'success'
                             ).then(() => {
                                 this.lessons.splice(index, 1);

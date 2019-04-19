@@ -12,6 +12,7 @@ class CreateVideosTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('url');
+            $table->string('photo_url');
             $table->string('description')->nullable();
             $table->timestamps();
         });
