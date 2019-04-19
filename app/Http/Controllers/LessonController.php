@@ -7,6 +7,7 @@ use App\Http\Resources\LessonResource;
 use App\Lesson;
 use App\Rules\DuplicateVideo;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class LessonController extends Controller
 {
@@ -24,10 +25,10 @@ class LessonController extends Controller
 
     public function store(Course $course)
     {
-        $attributes = request()->validate([
+        $attributes              = request()->validate([
             'name'        => 'required|unique:lessons|min:3|max:64',
             'description' => 'max:1023',
-            'video_id'       => ['required', 'exists:videos,id', new DuplicateVideo($course)]
+            'video_id'    => ['required', 'exists:videos,id', new DuplicateVideo($course)]
         ]);
         $attributes['course_id'] = $course->id;
 
@@ -41,16 +42,26 @@ class LessonController extends Controller
         //
     }
 
-    public function edit(Lesson $lesson)
+    public function edit(Course $course, Lesson $lesson)
     {
         return view('lesson.edit', [
+            'course' => $course,
             'lesson' => $lesson
         ]);
     }
 
-    public function update(Request $request, Lesson $lesson)
+    public function update(Course $course, Lesson $lesson)
     {
-        //
+        $attributes              = request()->validate([
+            'name'        => ['required', 'min:3', 'max:64', Rule::unique('lessons')->ignore($lesson)],
+            'description' => 'max:1023',
+            'video_id'    => ['required', 'exists:videos,id', new DuplicateVideo($course, $lesson)]
+        ]);
+        $attributes['course_id'] = $course->id;
+
+        $lesson->update($attributes);
+
+        return $this->ok('Lesson Created!');
     }
 
     public function destroy(Lesson $lesson)

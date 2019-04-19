@@ -177,7 +177,7 @@
             },
 
             editLesson(lesson) {
-                window.location = '/lesson/' + lesson.id;
+                window.location = '/course/' + this.course.id + '/lesson/' + lesson.id + '/edit';
             },
 
             deleteLesson(lesson, index) {

@@ -2478,7 +2478,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editLesson: function editLesson(lesson) {
-      window.location = '/lesson/' + lesson.id;
+      window.location = '/course/' + this.course.id + '/lesson/' + lesson.id + '/edit';
     },
     deleteLesson: function deleteLesson(lesson, index) {
       var _this4 = this;
@@ -2598,7 +2598,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.form.post('/course/' + this.course.id + '/lesson').then(function () {
-        window.location = '/course/' + _this2.course.id;
+        _this2.$swal.fire('Created!', 'Your lesson has been created.', 'success').then(function () {
+          window.location = '/course/' + _this2.course.id;
+        });
       });
     }
   }
@@ -2675,14 +2677,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['lesson'],
+  props: ['course', 'lesson'],
   data: function data() {
     return {
       videoOptions: [],
       form: new _utils_form__WEBPACK_IMPORTED_MODULE_0__["default"]({
-        name: '',
-        description: '',
-        video_id: ''
+        name: this.lesson.name,
+        description: this.lesson.description,
+        video_id: this.lesson.video_id
       })
     };
   },
@@ -2695,8 +2697,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     updateLesson: function updateLesson() {
-      this.form.post('/lesson/' + this.lesson.id).then(function (request) {
-        window.location = '/course/' + request.data.course_id;
+      var _this2 = this;
+
+      this.form.put('/course/' + this.course.id + '/lesson/' + this.lesson.id).then(function () {
+        _this2.$swal.fire('Updated!', 'Your lesson has been updated.', 'success').then(function () {
+          window.location = '/course/' + _this2.course.id;
+        });
       });
     }
   }
@@ -40808,7 +40814,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.addLesson($event)
+                return _vm.updateLesson($event)
               },
               keydown: function($event) {
                 return _vm.form.errors.clear($event.target.name)

@@ -2,7 +2,7 @@
     <div>
         <div class="ml-64 mr-64">
             <div class="my-4">
-                <form @submit.prevent="addLesson" @keydown="form.errors.clear($event.target.name)">
+                <form @submit.prevent="updateLesson" @keydown="form.errors.clear($event.target.name)">
                     <div class="flex flex-row justify-center w-full">
                         <div class="border px-8 py-4 rounded shadow w-full">
                             <div class="text-xl mb-8">
@@ -60,15 +60,15 @@
     import Form from "../../utils/form";
 
     export default {
-        props: ['lesson'],
+        props: ['course', 'lesson'],
 
         data() {
             return {
                 videoOptions: [],
                 form  : new Form({
-                    name       : '',
-                    description: '',
-                    video_id      : '',
+                    name       : this.lesson.name,
+                    description: this.lesson.description,
+                    video_id      : this.lesson.video_id,
                 }),
             }
         },
@@ -81,8 +81,14 @@
 
         methods: {
             updateLesson() {
-                this.form.post('/lesson/' + this.lesson.id).then((request) => {
-                    window.location = '/course/' + request.data.course_id;
+                this.form.put('/course/' + this.course.id + '/lesson/' + this.lesson.id).then(() => {
+                    this.$swal.fire(
+                        'Updated!',
+                        'Your lesson has been updated.',
+                        'success'
+                    ).then(() => {
+                        window.location = '/course/' + this.course.id;
+                    });
                 });
             },
         }

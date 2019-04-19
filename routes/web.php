@@ -36,9 +36,11 @@ Route::group(['middleware' => ['auth', 'is.admin']], function () {
     Route::resource('course', 'CourseController');
 
     //Lesson
-    Route::resource('lesson', 'LessonController')->except(['create', 'store']);
+    Route::resource('lesson', 'LessonController')->except(['create', 'edit', 'update', 'store']);
     Route::get('course/{course}/create-lesson', 'LessonController@create');
     Route::post('course/{course}/lesson', 'LessonController@store');
+    Route::get('course/{course}/lesson/{lesson}/edit', 'LessonController@edit');
+    Route::put('course/{course}/lesson/{lesson}', 'LessonController@update');
     Route::get('lesson-list/{course}', 'LessonController@lessonList');
 });
 

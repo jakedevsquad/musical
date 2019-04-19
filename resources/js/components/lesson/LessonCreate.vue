@@ -82,7 +82,13 @@
         methods: {
             addLesson() {
                 this.form.post('/course/' + this.course.id + '/lesson').then(() => {
-                    window.location = '/course/' + this.course.id;
+                    this.$swal.fire(
+                        'Created!',
+                        'Your lesson has been created.',
+                        'success'
+                    ).then(() => {
+                        window.location = '/course/' + this.course.id;
+                    });
                 });
             },
         }
