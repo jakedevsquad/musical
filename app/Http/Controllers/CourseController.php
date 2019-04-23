@@ -8,6 +8,7 @@ use App\Http\Resources\CourseResource;
 use App\Http\Resources\LessonResource;
 use App\Lesson;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CourseController extends Controller
 {
@@ -54,17 +55,26 @@ class CourseController extends Controller
 
     public function edit(Course $course)
     {
-        //
+        return view('course.edit', [
+            'course' => $course
+        ]);
     }
 
     public function update(Course $course)
     {
-        //
+        $attributes = request()->validate([
+            'name'        => ['required','min:3','max:64', Rule::unique('courses')->ignore($course->id)],
+            'category_id' => 'required|exists:categories,id'
+        ]);
+
+        $course->update($attributes);
+
+        return $this->ok('Course Updated!');
     }
 
     public function destroy(Course $course)
     {
-        $course->lessons->delete();
+        $course->lessons()->delete();
         $course->delete();
 
         return $this->ok('Course Deleted!');

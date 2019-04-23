@@ -12,7 +12,7 @@ use Illuminate\Contracts\Validation\Rule;
  */
 class DuplicateVideo implements Rule
 {
-    public function __construct(Course $course, Lesson $lesson)
+    public function __construct(Course $course, Lesson $lesson = null)
     {
         $this->course = $course;
         $this->lesson = $lesson;
@@ -20,12 +20,28 @@ class DuplicateVideo implements Rule
 
     public function passes($attribute, $value)
     {
-        return Lesson::query()
+        $lessons = collect($this->course->lessons);
+
+        if ($this->lesson) {
+            /** @var Lesson $lesson */
+            $lessons->filter(function ($lesson) {
+                return $lesson->id != $this->lesson->id;
+            });
+        }
+
+        /** @var Lesson $lesson */
+        foreach ($lessons as $lesson) {
+            if (Lesson::query()
                 ->where('course_id', $this->course->id)
                 ->where('video_id', $value)
-                ->where('video_id', '!=', $this->lesson->video->id)
+                ->where('video_id', '!=', $lesson->video->id)
                 ->get()
-                ->isEmpty() ? true : false;
+                ->isNotEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function message()
