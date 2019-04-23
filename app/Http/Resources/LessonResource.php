@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Lesson;
-use App\Video;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LessonResource extends JsonResource
@@ -18,6 +17,7 @@ class LessonResource extends JsonResource
             'course_id'       => $this->course,
             'video_photo_url' => $this->video->photo_url,
             'video_url'       => $this->video->url,
+            'order'           => $this->order,
         ];
     }
 }

@@ -14,6 +14,7 @@ class CreateLessonsTable extends Migration
             $table->string('description')->nullable();
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('video_id');
+            $table->unsignedBigInteger('order');
             $table->timestamps();
 
             $table->foreign('course_id')

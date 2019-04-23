@@ -25,4 +25,16 @@ class Course extends Model
     {
         return $this->hasMany(Lesson::class);
     }
+
+    public function getNextLessonOrderNumber()
+    {
+        $highestOrder = 0;
+        if ($this->lessons()->exists()) {
+            /** @var Lesson $lesson */
+            foreach ($this->lessons as $lesson) {
+                $highestOrder = $lesson->order > $highestOrder ? $lesson->order : $highestOrder;
+            }
+        }
+        return $highestOrder + 1;
+    }
 }

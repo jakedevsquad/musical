@@ -77,33 +77,45 @@
 
             <div class="flex flex-row justify-center">
                 <div class="border pt-4 rounded shadow w-full">
-                    <div class="text-xl border-b-2 px-8 pb-3">Lessons</div>
-                    <div v-for="(lesson, index) in lessons" class="px-8 hover:bg-grey-lighter"
-                         :class="{'border-b' : index !== lessons.length - 1}">
-                        <div class="flex flex-row justify-start p-4">
-                            <div class="w-1/4">
-                                <img :src="`/storage/${lesson.video_photo_url}`" width="320">
-                            </div>
-                            <div class="ml-4 w-full">
-                                <div class="text-lg">
-                                    {{ lesson.name }}
-                                </div>
-                                <div class="text-sm mt-4">
-                                    {{ lesson.description }}
-                                </div>
-                            </div>
-                            <div class="w-1/4">
-                                <button @click="editLesson(lesson)"
-                                        class="bg-blue p-3 rounded shadow uppercase flex flex-row items-center justify-center text-white font-bold focus:outline-none w-full mb-6">
-                                    Edit
-                                </button>
-                                <button @click="deleteLesson(lesson, index)"
-                                        class="bg-red p-3 rounded shadow uppercase flex flex-row items-center justify-center text-white font-bold focus:outline-none w-full">
-                                    delete
-                                </button>
-                            </div>
-                        </div>
+                    <div class="border-b-2 px-8 pb-3 flex flex-row justify-between">
+                        <span class="text-xl">Lessons</span>
+                        <button v-if="changingOrder" @click="saveOrder"
+                                class="bg-green p-3 rounded shadow uppercase flex flex-row items-center justify-center text-white font-bold focus:outline-none">Save Order</button>
                     </div>
+
+
+                    <draggable v-model="lessons" @change="handleDrag">
+                        <transition-group type="transition">
+                            <div v-for="(lesson, index) in lessons" :key="lesson.order" class="px-8 hover:bg-grey-lighter"
+                                 :class="{'border-b' : index !== lessons.length - 1}">
+                                <div class="flex flex-row justify-start p-4">
+                                    <div class="w-1/4">
+                                        <img :src="`/storage/${lesson.video_photo_url}`" width="320">
+                                    </div>
+                                    <div class="ml-4 w-full">
+                                        <div class="text-lg">
+                                            {{ lesson.name }}
+                                        </div>
+                                        <div class="text-sm mt-4">
+                                            {{ lesson.description }}
+                                        </div>
+                                    </div>
+                                    <div class="w-1/4">
+                                        <button @click="editLesson(lesson)"
+                                                class="bg-blue p-3 rounded shadow uppercase flex flex-row items-center justify-center text-white font-bold focus:outline-none w-full mb-6">
+                                            Edit
+                                        </button>
+                                        <button @click="deleteLesson(lesson, index)"
+                                                class="bg-red p-3 rounded shadow uppercase flex flex-row items-center justify-center text-white font-bold focus:outline-none w-full">
+                                            delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition-group>
+                    </draggable>
+
+
                 </div>
             </div>
         </div>
@@ -113,8 +125,12 @@
 <script>
 
     import Form from "../../utils/form";
+    import draggable from 'vuedraggable';
 
     export default {
+        components: {
+          draggable
+        },
         props: ['course'],
 
         data() {
@@ -122,6 +138,7 @@
                 lessons     : [],
                 newLesson   : false,
                 videoOptions: [],
+                changingOrder: false,
                 lessonForm  : new Form({
                     name       : '',
                     description: '',
@@ -204,6 +221,26 @@
                 });
             },
 
+            handleDrag(data) {
+                if (data.moved) {
+                    this.changingOrder = true;
+                }
+            },
+
+            saveOrder() {
+                let orderForm = new Form({
+                    lessons : this.lessons
+                });
+                orderForm.post('/lesson-order').then(() => {
+                    this.$swal.fire(
+                        'Re-ordered!',
+                        'Your lessons have been re-ordered!',
+                        'success'
+                    ).then(() => {
+                        window.location = '/course/' + this.course.id;
+                    });
+                });
+            }
         }
     }
 </script>

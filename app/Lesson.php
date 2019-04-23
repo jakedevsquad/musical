@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $updated_at
  * @property Course $course
  * @property Video $video
+ * @property int $order
  */
 class Lesson extends Model
 {

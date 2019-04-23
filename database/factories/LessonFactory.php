@@ -11,5 +11,6 @@ $factory->define(Lesson::class, function (Faker $faker) {
         'description' => $faker->sentence,
         'course_id' => Course::inRandomOrder()->first(),
         'video_id' => Video::inRandomOrder()->first(),
+        'order' => '0',
     ];
 });

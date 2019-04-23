@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth', 'is.admin']], function () {
     Route::get('course/{course}/lesson/{lesson}/edit', 'LessonController@edit');
     Route::put('course/{course}/lesson/{lesson}', 'LessonController@update');
     Route::get('lesson-list/{course}', 'LessonController@lessonList');
+    Route::post('lesson-order', 'LessonController@lessonOrder');
 });
 
 
