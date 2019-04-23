@@ -2006,6 +2006,8 @@ __webpack_require__.r(__webpack_exports__);
             _this.$swal.fire('Deleted!', 'Your category has been deleted.', 'success').then(function () {
               window.location = "/category";
             });
+          }).catch(function (error) {
+            _this.$swal.fire('We could not delete your category!', error.response.data);
           });
         }
       });
@@ -2071,6 +2073,8 @@ __webpack_require__.r(__webpack_exports__);
             _this.$swal.fire('Deleted!', 'Your category has been deleted.', 'success').then(function () {
               window.location = "/category";
             });
+          }).catch(function (error) {
+            _this.$swal.fire('We could not delete your category!', error.response.data);
           });
         }
       });
@@ -3270,6 +3274,8 @@ __webpack_require__.r(__webpack_exports__);
             _this.$swal.fire('Deleted!', 'Your video has been deleted.', 'success').then(function () {
               window.location = "/video";
             });
+          }).catch(function (error) {
+            _this.$swal.fire('We could not delete your video!', error.response.data);
           });
         }
       });
@@ -3343,6 +3349,8 @@ __webpack_require__.r(__webpack_exports__);
             _this.$swal.fire('Deleted!', 'Your video has been deleted.', 'success').then(function () {
               window.location = "/video";
             });
+          }).catch(function (error) {
+            _this.$swal.fire('We could not delete your video!', error.response.data);
           });
         }
       });

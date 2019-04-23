@@ -64,6 +64,9 @@ class CourseController extends Controller
 
     public function destroy(Course $course)
     {
-        //
+        $course->lessons->delete();
+        $course->delete();
+
+        return $this->ok('Course Deleted!');
     }
 }

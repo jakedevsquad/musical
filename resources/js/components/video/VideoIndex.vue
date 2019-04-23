@@ -118,6 +118,11 @@
                             ).then(() => {
                                 window.location = "/video";
                             });
+                        }).catch((error) => {
+                            this.$swal.fire(
+                                'We could not delete your video!',
+                                error.response.data,
+                            );
                         });
                     }
                 });

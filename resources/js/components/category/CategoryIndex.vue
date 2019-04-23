@@ -110,6 +110,11 @@
                             ).then(() => {
                                 window.location = "/category";
                             });
+                        }).catch((error) => {
+                            this.$swal.fire(
+                                'We could not delete your category!',
+                                error.response.data,
+                            );
                         });
                     }
                 });

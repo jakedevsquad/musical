@@ -8,6 +8,7 @@ use App\Video;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 
 class VideoController extends Controller
 {
@@ -113,6 +114,10 @@ class VideoController extends Controller
 
     public function destroy(Video $video)
     {
+        if ($video->lessons()->exists()) {
+            return response("This video is being used in a lesson and can not be deleted!", 403);
+        }
+
         Storage::delete($video->url);
         $video->delete();
 

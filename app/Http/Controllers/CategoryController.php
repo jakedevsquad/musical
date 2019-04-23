@@ -68,6 +68,10 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        if ($category->courses()->exists()) {
+            return response("This category is being used by a course and can not be deleted!", 403);
+        }
+
         $category->delete();
 
         return $this->ok('Category Deleted!');
