@@ -2485,53 +2485,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2542,8 +2495,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       lessons: [],
-      newLesson: false,
-      videoOptions: [],
       changingOrder: false,
       lessonForm: new _utils_form__WEBPACK_IMPORTED_MODULE_0__["default"]({
         name: '',
@@ -2555,9 +2506,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    window.axios.get('/video-list/' + this.course.id).then(function (response) {
-      _this.videoOptions = response.data;
-    });
     window.axios.get('/lesson-list/' + this.course.id).then(function (response) {
       _this.lessons = response.data;
     });
@@ -43030,234 +42978,6 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm.newLesson
-            ? _c("div", { staticClass: "my-4" }, [
-                _c(
-                  "form",
-                  {
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.addLesson($event)
-                      },
-                      keydown: function($event) {
-                        return _vm.lessonForm.errors.clear($event.target.name)
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "flex flex-row justify-center w-full" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "border px-8 py-4 rounded shadow w-full"
-                          },
-                          [
-                            _c("div", { staticClass: "text-xl mb-8" }, [
-                              _vm._v(
-                                "\n                                    " +
-                                  _vm._s(
-                                    _vm.lessonForm.name
-                                      ? _vm.lessonForm.name
-                                      : "New Lesson"
-                                  ) +
-                                  "\n                                "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "my-4" }, [
-                              _c(
-                                "label",
-                                {
-                                  class: {
-                                    "text-red": _vm.lessonForm.errors.has(
-                                      "name"
-                                    )
-                                  },
-                                  attrs: { for: "name" }
-                                },
-                                [_vm._v("Name")]
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.lessonForm.name,
-                                    expression: "lessonForm.name"
-                                  }
-                                ],
-                                staticClass:
-                                  "leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none",
-                                class: {
-                                  "border-red": _vm.lessonForm.errors.has(
-                                    "name"
-                                  )
-                                },
-                                attrs: {
-                                  id: "name",
-                                  name: "name",
-                                  maxlength: "64"
-                                },
-                                domProps: { value: _vm.lessonForm.name },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.lessonForm,
-                                      "name",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.lessonForm.errors.has("name")
-                                ? _c("div", { staticClass: "text-red" }, [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm.lessonForm.errors.get("name")
-                                      ) +
-                                        "\n                                    "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "my-4" }, [
-                              _c("label", { attrs: { for: "description" } }, [
-                                _vm._v("Description")
-                              ]),
-                              _vm._v(" "),
-                              _c("textarea", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.lessonForm.description,
-                                    expression: "lessonForm.description"
-                                  }
-                                ],
-                                staticClass:
-                                  "leading-loose tracking-wide shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none resize-none",
-                                attrs: {
-                                  rows: "6",
-                                  id: "description",
-                                  name: "description",
-                                  maxlength: "1023"
-                                },
-                                domProps: { value: _vm.lessonForm.description },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.lessonForm,
-                                      "description",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "my-4" }, [
-                              _c("label", { attrs: { for: "video" } }, [
-                                _vm._v("Video")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.lessonForm.video,
-                                      expression: "lessonForm.video"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none",
-                                  attrs: { name: "video", id: "video" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.lessonForm,
-                                        "video",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                _vm._l(_vm.videoOptions, function(video) {
-                                  return _c("option", [
-                                    _vm._v(_vm._s(video.name))
-                                  ])
-                                }),
-                                0
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "flex flex-row justify-end" },
-                              [
-                                _vm._m(0),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "p-3 rounded shadow uppercase flex flex-row items-center justify-center focus:outline-none",
-                                    class: {
-                                      "bg-pink-lighter cursor-not-allowed": _vm.lessonForm.errors.any(),
-                                      "bg-pink": !_vm.lessonForm.errors.any()
-                                    },
-                                    attrs: {
-                                      disabled: _vm.lessonForm.errors.any()
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "span",
-                                      { staticClass: "text-white font-bold" },
-                                      [_vm._v("Save")]
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  ]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
           _c("div", { staticClass: "flex flex-row justify-end" }, [
             _c(
               "button",
@@ -43430,21 +43150,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass:
-          "mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold focus:outline-none"
-      },
-      [_c("span", [_vm._v("Cancel")])]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

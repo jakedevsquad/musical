@@ -24,8 +24,8 @@ class DuplicateVideo implements Rule
 
         if ($this->lesson) {
             /** @var Lesson $lesson */
-            $lessons->filter(function ($lesson) {
-                return $lesson->id != $this->lesson->id;
+            $lessons = $lessons->filter(function ($lesson) {
+                return $lesson->id === $this->lesson->id;
             });
         }
 

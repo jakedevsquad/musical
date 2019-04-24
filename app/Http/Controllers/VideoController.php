@@ -138,7 +138,7 @@ class VideoController extends Controller
         $existingVideos = collect([]);
         /** @var Lesson $lesson */
         foreach ($course->lessons as $lesson) {
-            $existingVideos = $existingVideos->merge($lesson->videos);
+            $existingVideos->push($lesson->video);
         }
 
         return Video::all()->diff($existingVideos);

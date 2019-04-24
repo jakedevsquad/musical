@@ -10,53 +10,6 @@
                         {{ course.category.name }}
                     </div>
 
-                    <div v-if="newLesson" class="my-4">
-                        <form @submit.prevent="addLesson" @keydown="lessonForm.errors.clear($event.target.name)">
-                            <div class="flex flex-row justify-center w-full">
-                                <div class="border px-8 py-4 rounded shadow w-full">
-                                    <div class="text-xl mb-8">
-                                        {{ lessonForm.name ? lessonForm.name : "New Lesson" }}
-                                    </div>
-                                    <div class="my-4">
-                                        <label for="name"
-                                               :class="{'text-red': lessonForm.errors.has('name')}">Name</label>
-                                        <input v-model="lessonForm.name" id="name" name="name" maxlength="64"
-                                               class="leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none"
-                                               :class="{'border-red': lessonForm.errors.has('name')}">
-                                        <div class="text-red" v-if="lessonForm.errors.has('name')">{{
-                                            lessonForm.errors.get('name') }}
-                                        </div>
-                                    </div>
-                                    <div class="my-4">
-                                        <label for="description">Description</label>
-                                        <textarea rows="6" v-model="lessonForm.description" id="description"
-                                                  name="description"
-                                                  maxlength="1023"
-                                                  class="leading-loose tracking-wide shadow-sm appearance-none border rounded py-2 px-3 text-grey-darker w-full focus:outline-none resize-none"></textarea>
-                                    </div>
-                                    <div class="my-4">
-                                        <label for="video">Video</label>
-                                        <select name="video" id="video" v-model="lessonForm.video"
-                                                class="leading-loose tracking-wide shadow-sm appearance-none border rounded py-1 px-3 text-grey-darker w-full focus:outline-none">
-                                            <option v-for="video in videoOptions">{{ video.name }}</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="flex flex-row justify-end">
-                                        <button class="mr-4 no-underline bg-white p-3 rounded shadow uppercase flex flex-row items-center justify-center text-pink font-bold focus:outline-none">
-                                            <span>Cancel</span>
-                                        </button>
-                                        <button class="p-3 rounded shadow uppercase flex flex-row items-center justify-center focus:outline-none"
-                                                :class="{'bg-pink-lighter cursor-not-allowed' : lessonForm.errors.any(), 'bg-pink' : !lessonForm.errors.any()}"
-                                                :disabled="lessonForm.errors.any()">
-                                            <span class="text-white font-bold">Save</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
                     <div class="flex flex-row justify-end">
                         <button @click="destroy"
                                 class="mr-4 bg-red p-3 rounded shadow uppercase flex flex-row items-center justify-center text-white font-bold focus:outline-none">
@@ -136,8 +89,6 @@
         data() {
             return {
                 lessons     : [],
-                newLesson   : false,
-                videoOptions: [],
                 changingOrder: false,
                 lessonForm  : new Form({
                     name       : '',
@@ -148,10 +99,6 @@
         },
 
         mounted() {
-            window.axios.get('/video-list/' + this.course.id).then((response) => {
-                this.videoOptions = response.data;
-            });
-
             window.axios.get('/lesson-list/' + this.course.id).then((response) => {
                 this.lessons = response.data;
             });
