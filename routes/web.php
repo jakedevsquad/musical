@@ -45,6 +45,10 @@ Route::group(['middleware' => ['auth', 'is.admin']], function () {
     Route::post('lesson-order', 'LessonController@lessonOrder');
 });
 
+Route::group(['middleware' => ['auth', 'is.customer']], function () {
+    Route::resource('catalog', 'CatalogController');
+});
+
 
 
 
